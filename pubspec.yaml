@@ -1,0 +1,84 @@
+name: import_mark
+description: "A new E-commerce Flutter project. Specilly for Importers."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.2
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.8
+  get: ^4.6.6
+  flutter_svg: ^2.0.10+1
+  flutter_screenutil: ^5.9.0
+  awesome_bottom_bar: ^1.2.4
+  awesome_dialog: ^3.2.1
+  cached_network_image: ^3.3.1
+  shimmer: ^3.0.0
+  hive: ^2.2.3
+  dio: ^5.7.0
+  image_picker: ^1.1.2
+  badges: ^3.1.2
+  carousel_slider: ^5.0.0
+  animate_do: ^3.3.4
+  url_launcher: ^6.3.0
+  hero_animation: ^1.1.4
+  google_fonts: 6.1.0
+  material_design_icons_flutter: ^7.0.7296
+  loading_animation_widget: ^1.2.1
+  rounded_loading_button_plus: ^3.0.1
+  logger: ^2.3.0
+  flutter_scroll_to_top: ^2.3.0
+  flutter_staggered_animations: ^1.1.1
+  flutter_staggered_grid_view: ^0.7.0
+  flutter_add_to_cart_button: ^1.1.0
+  readmore: ^3.0.0
+  just_audio: ^0.9.40
+  dots_indicator: ^3.0.0
+  faker_dart: ^0.2.2
+  intl_phone_field: ^3.2.0
+  introduction_screen: ^3.1.9
+  grouped_list: ^6.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^4.0.0
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/fonts/
+    - assets/flag/
+    - assets/json/language.json
+    - assets/json/
+    - assets/tone/success_tone.mp3
+    - assets/tone/correct.mp3
+
+
+  fonts:
+    - family: Gothic
+      fonts:
+        - asset: assets/fonts/gothicA1_regular.ttf
+          weight: 500
+
+flutter_gen:
+  colors:
+    inputs:
+      - assets/color/colors.xml
