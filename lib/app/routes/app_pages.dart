@@ -25,6 +25,8 @@ import '../modules/notification/views/notification_view.dart';
 import '../modules/onboard/bindings/onboard_binding.dart';
 import '../modules/onboard/views/onboard_view.dart';
 import '../modules/orders/bindings/orders_binding.dart';
+import '../modules/orders/order_details/bindings/order_details_binding.dart';
+import '../modules/orders/order_details/views/order_details_view.dart';
 import '../modules/orders/views/orders_view.dart';
 import '../modules/products/bindings/products_binding.dart';
 import '../modules/products/product_details/bindings/product_details_binding.dart';
@@ -118,6 +120,13 @@ class AppPages {
       name: _Paths.ORDERS,
       page: () => const OrdersView(),
       binding: OrdersBinding(),
+      children: [
+        GetPage(
+          name: _Paths.ORDER_DETAILS,
+          page: () => const OrderDetailsView(),
+          binding: OrderDetailsBinding(),
+        ),
+      ],
     ),
     GetPage(
       name: _Paths.PRODUCTS,
