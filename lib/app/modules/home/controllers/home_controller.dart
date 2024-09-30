@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:get/get.dart';
-
-import '../../../../helper/log_printer.dart';
+import '../../../../global/log_printer.dart';
 import '../../../repository/api_services.dart';
 
 class HomeController extends GetxController {

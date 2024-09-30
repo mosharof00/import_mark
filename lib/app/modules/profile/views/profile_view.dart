@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:faker_dart/faker_dart.dart';
+// import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -73,9 +73,9 @@ class ProfileView extends GetView<ProfileController> {
                     ),
                   ),
                 ),
-                labels(text: Faker.instance.name.fullName(), fontSize: 20.sp),
+                labels(text: 'Mosharof Khan', fontSize: 20.sp),
                 labels(
-                    text: Faker.instance.lorem.text(),
+                    text: 'hi',
                     fontSize: 12.sp,
                     color: ColorName.gray410),
               ],
