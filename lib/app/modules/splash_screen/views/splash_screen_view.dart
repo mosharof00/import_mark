@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../gen/assets.gen.dart';
+import '../../../../gen/colors.gen.dart';
 import '../controllers/splash_screen_controller.dart';
 
 class SplashScreenView extends GetView<SplashScreenController> {
   const SplashScreenView({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('SplashScreenView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'SplashScreenView is working',
-          style: TextStyle(fontSize: 20),
+    final controller = Get.put(SplashScreenController());
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: ColorName.bgColor,
+        body: Center(
+          // child: Image.asset(
+          //   Assets.images.vendorLogo.path,
+          //   height: 200.h,
+          //   width: 200.w,
+          // ),
+          child: SvgPicture.asset(Assets.images.logoSvg),
         ),
       ),
     );

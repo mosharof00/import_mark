@@ -1,23 +1,34 @@
 import 'package:get/get.dart';
 
+import '../../../../helper/helper_utils.dart';
+import '../../../routes/app_pages.dart';
+import '../../../services/local_store_config.dart';
+
 class SplashScreenController extends GetxController {
   //TODO: Implement SplashScreenController
 
-  final count = 0.obs;
+  navigateToMainPage() async {
+    ///  get Important token & user ID
+    // HelperUtils.token = await HiveService.getToken() ?? "";
+    // HelperUtils.adminID = (await HiveService.getAdminID())!;
+    // if (HelperUtils.isLogin) {
+    //   ///  initialize Main Controllers
+    //   await HelperUtils.initializeMainControllers();
+    //   await Future.delayed(const Duration(seconds: 3));
+    //   Get.offNamed(Routes.MAIN_PAGE);
+    // } else {
+    //   Future.delayed(Duration.zero, () {
+    //     Get.toNamed(Routes.LOGIN);
+    //   });
+    // }
+    await HelperUtils.initializeMainControllers();
+    await Future.delayed(const Duration(seconds: 3));
+    Get.offNamed(Routes.LOGIN);
+  }
+
   @override
-  void onInit() {
+  void onInit() async {
+    navigateToMainPage();
     super.onInit();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
