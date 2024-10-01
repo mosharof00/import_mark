@@ -39,7 +39,7 @@ class LoginView extends GetView<LoginController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset(
-                    Assets.images.logoSvg,
+                    Assets.images.logo.path,
                     height: 150.h,
                     width: 150.w,
                   ),
@@ -195,7 +195,7 @@ class LoginView extends GetView<LoginController> {
                           //   email: controller.emailEditingController.text,
                           //   password: controller.passEditingController.text,
                           // );
-                          Get.toNamed(Routes.MAIN_PAGE);
+                          Get.offNamed(Routes.MAIN_PAGE);
                         } else {
                           controller.btnController.stop();
                         }

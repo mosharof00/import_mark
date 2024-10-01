@@ -15,7 +15,7 @@ import '../gen/assets.gen.dart';
 
 class HelperUtils {
   /// Logo
-  static String appLogo = Assets.images.logoPng.path;
+  static String appLogo = Assets.images.logo.path;
 
   static String firebaseToken = "";
   static bool isLogin = false;

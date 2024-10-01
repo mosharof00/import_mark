@@ -62,7 +62,7 @@ class ProductsView extends GetView<ProductsController> {
                     },
                     height: 250.h,
                     width: Get.width,
-                    imageHeight: 150.h,
+                    imageHeight: 180.h,
                   ),
                 ),
               );

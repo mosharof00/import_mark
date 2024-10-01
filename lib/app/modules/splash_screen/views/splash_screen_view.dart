@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
@@ -21,7 +22,11 @@ class SplashScreenView extends GetView<SplashScreenController> {
           //   height: 200.h,
           //   width: 200.w,
           // ),
-          child: SvgPicture.asset(Assets.images.logoSvg),
+          child: Image.asset(
+            Assets.images.logo.path,
+            height: 400.h,
+            width: Get.width,
+          ),
         ),
       ),
     );

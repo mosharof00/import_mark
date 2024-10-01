@@ -23,6 +23,14 @@ abstract class Routes {
   static const CHECKOUT = _Paths.CHECKOUT;
   static const EDIT_PROFILE = _Paths.PROFILE + _Paths.EDIT_PROFILE;
   static const ORDER_DETAILS = _Paths.ORDERS + _Paths.ORDER_DETAILS;
+  static const RECENT_ORDERS = _Paths.ADMIN + _Paths.RECENT_ORDERS;
+  static const CHANGE_ORDER_STATUS =
+      _Paths.ADMIN + _Paths.RECENT_ORDERS + _Paths.CHANGE_ORDER_STATUS;
+  static const SALES_SUMMARY = _Paths.ADMIN + _Paths.SALES_SUMMARY;
+  static const ADD_PRODUCT = _Paths.ADMIN + _Paths.ADD_PRODUCT;
+  static const CUSTOMERS = _Paths.ADMIN + _Paths.CUSTOMERS;
+  static const CUSTOMER_DETAILS =
+      _Paths.ADMIN + _Paths.CUSTOMERS + _Paths.CUSTOMER_DETAILS;
 }
 
 abstract class _Paths {
@@ -47,4 +55,10 @@ abstract class _Paths {
   static const CHECKOUT = '/checkout';
   static const EDIT_PROFILE = '/edit-profile';
   static const ORDER_DETAILS = '/order-details';
+  static const RECENT_ORDERS = '/recent-orders';
+  static const CHANGE_ORDER_STATUS = '/change-order-status';
+  static const SALES_SUMMARY = '/sales-summary';
+  static const ADD_PRODUCT = '/add-product';
+  static const CUSTOMERS = '/customers';
+  static const CUSTOMER_DETAILS = '/customer-details';
 }

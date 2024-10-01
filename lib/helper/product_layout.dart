@@ -35,7 +35,7 @@ class ProductLayout extends StatelessWidget {
         margin: EdgeInsets.all(10.r),
         decoration: BoxDecoration(
             color: ColorName.white,
-            borderRadius: BorderRadius.circular(20.r),
+            borderRadius: BorderRadius.circular(8.r),
             boxShadow: const [
               BoxShadow(
                   color: Colors.black12,
@@ -55,15 +55,15 @@ class ProductLayout extends StatelessWidget {
                       ? "productDetails_${meal.idMeal}"
                       : meal.idMeal.toString(),
                   child: CachedNetworkImage(
-                    height: imageHeight ?? 170.h,
+                    height: imageHeight ?? 190.h,
                     width: Get.width,
                     imageBuilder: (context, imageProvider) => Container(
                       height: imageHeight ?? 170.h,
                       width: Get.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20.r),
-                            topRight: Radius.circular(20.r)),
+                            topLeft: Radius.circular(8.r),
+                            topRight: Radius.circular(8.r)),
                         image: DecorationImage(
                           image: imageProvider,
                           fit: BoxFit.cover,
@@ -73,7 +73,7 @@ class ProductLayout extends StatelessWidget {
                     imageUrl: meal.strMealThumb.toString(),
                     fit: BoxFit.fill,
                     placeholder: (context, url) =>
-                        shimmerLoadingWidget(height: 160.h, width: Get.width),
+                        shimmerLoadingWidget(height: 190.h, width: Get.width),
                     errorWidget: (context, url, error) => Image.asset(
                       Assets.images.phoneimage.path,
                       width: Get.width,

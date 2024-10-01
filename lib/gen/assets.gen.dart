@@ -314,9 +314,15 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/addProduct.svg
+  String get addProduct => 'assets/images/addProduct.svg';
+
   /// File path: assets/images/addtocart.gif
   AssetGenImage get addtocart =>
       const AssetGenImage('assets/images/addtocart.gif');
+
+  /// File path: assets/images/allproduct.svg
+  String get allproduct => 'assets/images/allproduct.svg';
 
   /// File path: assets/images/background_image.jpg
   AssetGenImage get backgroundImage =>
@@ -331,6 +337,12 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/checkout.svg
   String get checkout => 'assets/images/checkout.svg';
+
+  /// File path: assets/images/customerSupport.svg
+  String get customerSupport => 'assets/images/customerSupport.svg';
+
+  /// File path: assets/images/customers.svg
+  String get customers => 'assets/images/customers.svg';
 
   /// File path: assets/images/deals.gif
   AssetGenImage get deals => const AssetGenImage('assets/images/deals.gif');
@@ -384,10 +396,7 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/lock_animation_icon.gif');
 
   /// File path: assets/images/logo.png
-  AssetGenImage get logoPng => const AssetGenImage('assets/images/logo.png');
-
-  /// File path: assets/images/logo.svg
-  String get logoSvg => 'assets/images/logo.svg';
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
 
   /// File path: assets/images/logout.svg
   String get logout => 'assets/images/logout.svg';
@@ -403,6 +412,9 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/model.png
   AssetGenImage get model => const AssetGenImage('assets/images/model.png');
+
+  /// File path: assets/images/my_orders_icon.svg
+  String get myOrdersIcon => 'assets/images/my_orders_icon.svg';
 
   /// File path: assets/images/nagad_image.png
   AssetGenImage get nagadImage =>
@@ -436,6 +448,12 @@ class $AssetsImagesGen {
   /// File path: assets/images/ques.svg
   String get ques => 'assets/images/ques.svg';
 
+  /// File path: assets/images/recent_orders.svg
+  String get recentOrders => 'assets/images/recent_orders.svg';
+
+  /// File path: assets/images/recentorder.svg
+  String get recentorder => 'assets/images/recentorder.svg';
+
   /// File path: assets/images/review.gif
   AssetGenImage get reviewGif =>
       const AssetGenImage('assets/images/review.gif');
@@ -449,6 +467,9 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/sale.png
   AssetGenImage get sale => const AssetGenImage('assets/images/sale.png');
+
+  /// File path: assets/images/salesSummary.svg
+  String get salesSummary => 'assets/images/salesSummary.svg';
 
   /// File path: assets/images/security_icon.svg
   String get securityIcon => 'assets/images/security_icon.svg';
@@ -466,6 +487,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/sslcommerz.png
   AssetGenImage get sslcommerz =>
       const AssetGenImage('assets/images/sslcommerz.png');
+
+  /// File path: assets/images/stocks.svg
+  String get stocks => 'assets/images/stocks.svg';
 
   /// File path: assets/images/stripe.jpg
   AssetGenImage get stripe => const AssetGenImage('assets/images/stripe.jpg');
@@ -485,11 +509,15 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
+        addProduct,
         addtocart,
+        allproduct,
         backgroundImage,
         bkashImage,
         carry,
         checkout,
+        customerSupport,
+        customers,
         deals,
         discount,
         edit,
@@ -505,13 +533,13 @@ class $AssetsImagesGen {
         highToLow,
         loadingAnimationGif,
         lockAnimationIcon,
-        logoPng,
-        logoSvg,
+        logo,
         logout,
         logoutIcon,
         lowtohigh,
         menu,
         model,
+        myOrdersIcon,
         nagadImage,
         newArrival,
         nike,
@@ -522,15 +550,19 @@ class $AssetsImagesGen {
         paymentMethodsIcon,
         phoneimage,
         ques,
+        recentOrders,
+        recentorder,
         reviewGif,
         reviewSvg,
         rocketImage,
         sale,
+        salesSummary,
         securityIcon,
         settingIcon,
         singleLogoPng,
         singleLogoSvg,
         sslcommerz,
+        stocks,
         stripe,
         toprated,
         userOutlineIcon,

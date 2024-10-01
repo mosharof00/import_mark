@@ -23,7 +23,7 @@ class SplashScreenController extends GetxController {
     // }
     await HelperUtils.initializeMainControllers();
     await Future.delayed(const Duration(seconds: 3));
-    Get.offNamed(Routes.LOGIN);
+    Get.offNamed(Routes.MAIN_PAGE);
   }
 
   @override

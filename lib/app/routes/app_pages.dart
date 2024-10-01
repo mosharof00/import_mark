@@ -1,12 +1,24 @@
 import 'package:get/get.dart';
 
+import '../modules/admin/add_product/bindings/add_product_binding.dart';
+import '../modules/admin/add_product/views/add_product_view.dart';
 import '../modules/admin/admin_main_page/bindings/admin_main_page_binding.dart';
 import '../modules/admin/admin_main_page/views/admin_main_page_view.dart';
 import '../modules/admin/bindings/admin_binding.dart';
+import '../modules/admin/customers/bindings/customers_binding.dart';
+import '../modules/admin/customers/customer_details/bindings/customer_details_binding.dart';
+import '../modules/admin/customers/customer_details/views/customer_details_view.dart';
+import '../modules/admin/customers/views/customers_view.dart';
 import '../modules/admin/dashboard/bindings/dashboard_binding.dart';
 import '../modules/admin/dashboard/views/dashboard_view.dart';
 import '../modules/admin/financial/bindings/financial_binding.dart';
 import '../modules/admin/financial/views/financial_view.dart';
+import '../modules/admin/recent_orders/bindings/recent_orders_binding.dart';
+import '../modules/admin/recent_orders/change_order_status/bindings/change_order_status_binding.dart';
+import '../modules/admin/recent_orders/change_order_status/views/change_order_status_view.dart';
+import '../modules/admin/recent_orders/views/recent_orders_view.dart';
+import '../modules/admin/sales_summary/bindings/sales_summary_binding.dart';
+import '../modules/admin/sales_summary/views/sales_summary_view.dart';
 import '../modules/admin/views/admin_view.dart';
 import '../modules/cart/bindings/cart_binding.dart';
 import '../modules/cart/views/cart_view.dart';
@@ -73,6 +85,40 @@ class AppPages {
           name: _Paths.FINANCIAL,
           page: () => const FinancialView(),
           binding: FinancialBinding(),
+        ),
+        GetPage(
+          name: _Paths.RECENT_ORDERS,
+          page: () => const RecentOrdersView(),
+          binding: RecentOrdersBinding(),
+          children: [
+            GetPage(
+              name: _Paths.CHANGE_ORDER_STATUS,
+              page: () => const ChangeOrderStatusView(),
+              binding: ChangeOrderStatusBinding(),
+            ),
+          ],
+        ),
+        GetPage(
+          name: _Paths.SALES_SUMMARY,
+          page: () => const SalesSummaryView(),
+          binding: SalesSummaryBinding(),
+        ),
+        GetPage(
+          name: _Paths.ADD_PRODUCT,
+          page: () => const AddProductView(),
+          binding: AddProductBinding(),
+        ),
+        GetPage(
+          name: _Paths.CUSTOMERS,
+          page: () => const CustomersView(),
+          binding: CustomersBinding(),
+          children: [
+            GetPage(
+              name: _Paths.CUSTOMER_DETAILS,
+              page: () => const CustomerDetailsView(),
+              binding: CustomerDetailsBinding(),
+            ),
+          ],
         ),
       ],
     ),

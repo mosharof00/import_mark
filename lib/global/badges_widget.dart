@@ -4,7 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../gen/colors.gen.dart';
 import 'app_text_style.dart';
 
-Widget badgeWidget({int? count, Function()? onTap, required Widget icon}) {
+Widget badgeWidget({
+  int? count,
+  Function()? onTap,
+  required Widget icon,
+  Color? badgeColor,
+}) {
   return Container(
     margin: EdgeInsets.all(3.r),
     // padding: EdgeInsets.all(3.r),
@@ -30,7 +35,7 @@ Widget badgeWidget({int? count, Function()? onTap, required Widget icon}) {
       ),
       badgeStyle: badges.BadgeStyle(
         shape: badges.BadgeShape.circle,
-        badgeColor: Colors.blue,
+        badgeColor: badgeColor ?? Colors.blue,
         padding: const EdgeInsets.all(4),
         borderRadius: BorderRadius.circular(4),
         badgeGradient: const badges.BadgeGradient.linear(

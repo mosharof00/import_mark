@@ -67,7 +67,7 @@ class OnboardView extends GetView<OnboardController> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Image.asset(
-                  Assets.images.logoSvg,
+                  Assets.images.logo.path,
                   height: Get.height,
                   width: Get.width,
                 ),
