@@ -168,11 +168,29 @@ class $AssetsIconsGen {
   /// File path: assets/icons/number_icon.svg
   String get numberIcon => 'assets/icons/number_icon.svg';
 
+  /// File path: assets/icons/order_cancel_icon.svg
+  String get orderCancelIcon => 'assets/icons/order_cancel_icon.svg';
+
+  /// File path: assets/icons/order_confirmed_icon.svg
+  String get orderConfirmedIcon => 'assets/icons/order_confirmed_icon.svg';
+
+  /// File path: assets/icons/order_delivered_icon.svg
+  String get orderDeliveredIcon => 'assets/icons/order_delivered_icon.svg';
+
   /// File path: assets/icons/order_fill_icon.svg
   String get orderFillIcon => 'assets/icons/order_fill_icon.svg';
 
   /// File path: assets/icons/order_icon.svg
   String get orderIcon => 'assets/icons/order_icon.svg';
+
+  /// File path: assets/icons/order_pending_icon.svg
+  String get orderPendingIcon => 'assets/icons/order_pending_icon.svg';
+
+  /// File path: assets/icons/order_rejected_icon.svg
+  String get orderRejectedIcon => 'assets/icons/order_rejected_icon.svg';
+
+  /// File path: assets/icons/order_returned_icon.svg
+  String get orderReturnedIcon => 'assets/icons/order_returned_icon.svg';
 
   /// File path: assets/icons/outlinFav.svg
   String get outlinFav => 'assets/icons/outlinFav.svg';
@@ -284,8 +302,14 @@ class $AssetsIconsGen {
         minusOutlineIcon,
         notificationsIcon,
         numberIcon,
+        orderCancelIcon,
+        orderConfirmedIcon,
+        orderDeliveredIcon,
         orderFillIcon,
         orderIcon,
+        orderPendingIcon,
+        orderRejectedIcon,
+        orderReturnedIcon,
         outlinFav,
         paymentHistoryIcon,
         paymentMethodsIcon,
@@ -352,6 +376,9 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/edit.svg
   String get edit => 'assets/images/edit.svg';
+
+  /// File path: assets/images/empty_search.svg
+  String get emptySearch => 'assets/images/empty_search.svg';
 
   /// File path: assets/images/emptycart.svg
   String get emptycart => 'assets/images/emptycart.svg';
@@ -521,6 +548,7 @@ class $AssetsImagesGen {
         deals,
         discount,
         edit,
+        emptySearch,
         emptycart,
         errorStorySet,
         fashion,

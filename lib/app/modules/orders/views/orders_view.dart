@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:import_mark/app/routes/app_pages.dart';
 
 import '../../../../gen/colors.gen.dart';
 import '../../../../global/app_text_style.dart';
@@ -25,16 +26,16 @@ class OrdersView extends GetView<OrdersController> {
         backgroundColor: ColorName.bgColor,
         title: const AppTextStyle(text: 'My Order'),
         centerTitle: true,
-        leading: Get.currentRoute != '/my-order'
+        leading: Get.previousRoute == Routes.MAIN_PAGE
             ? const AppTextStyle(
-          text: '',
-        )
+                text: '',
+              )
             : InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: const Icon(Icons.arrow_back),
-        ),
+                onTap: () {
+                  Get.back();
+                },
+                child: const Icon(Icons.arrow_back),
+              ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -50,64 +51,64 @@ class OrdersView extends GetView<OrdersController> {
                     color: Colors.black38, blurRadius: 3, offset: Offset(1, 1))
               ]),
               child: Obx(() => TabBar(
-                // physics: const NeverScrollableScrollPhysics(),
-                // padding: const EdgeInsets.only(left: 10, right: 10),
-                indicatorWeight: 0,
-                // labelPadding: const EdgeInsets.only(left: 20, right: 20),
-                tabAlignment: TabAlignment.fill,
-                controller: controller.tabController,
-                dividerColor: Colors.transparent,
-                automaticIndicatorColorAdjustment: true,
-                indicatorSize: TabBarIndicatorSize.tab,
-                indicator: UnderlineTabIndicator(
-                    borderSide: BorderSide(
-                        width: 3.w, color: ColorName.primaryColor),
-                    insets: EdgeInsets.zero),
-                // RectangularIndicator(
-                //   color: ColorName.primaryColor,
-                //   bottomLeftRadius: 50.r,
-                //   // bottomRightRadius: 50.r,
-                //   // topLeftRadius: 50.r,
-                //   topRightRadius: 50.r,
-                //
-                // ),
-                unselectedLabelColor: Colors.black,
-                onTap: (index) {
-                  controller.updateSelectedTab(index);
-                },
-                tabs: [
-                  AppTextStyle(
-                    text:
-                    meal == Get.find<HomeController>().canadianMeals[0]
-                        ? 'Pending'.tr
-                        : 'Pending'.tr,
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    height: 0,
-                    color: controller.selectedTabIndex.value == 0
-                        ? selectColor
-                        : unselectColor,
-                  ),
-                  AppTextStyle(
-                    text: 'Completed',
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    height: 0,
-                    color: controller.selectedTabIndex.value == 1
-                        ? selectColor
-                        : unselectColor,
-                  ),
-                  AppTextStyleOverFlow(
-                    text: 'Canceled',
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    height: 0,
-                    color: controller.selectedTabIndex.value == 2
-                        ? selectColor
-                        : unselectColor,
-                  ),
-                ],
-              )),
+                    // physics: const NeverScrollableScrollPhysics(),
+                    // padding: const EdgeInsets.only(left: 10, right: 10),
+                    indicatorWeight: 0,
+                    // labelPadding: const EdgeInsets.only(left: 20, right: 20),
+                    tabAlignment: TabAlignment.fill,
+                    controller: controller.tabController,
+                    dividerColor: Colors.transparent,
+                    automaticIndicatorColorAdjustment: true,
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    indicator: UnderlineTabIndicator(
+                        borderSide: BorderSide(
+                            width: 3.w, color: ColorName.primaryColor),
+                        insets: EdgeInsets.zero),
+                    // RectangularIndicator(
+                    //   color: ColorName.primaryColor,
+                    //   bottomLeftRadius: 50.r,
+                    //   // bottomRightRadius: 50.r,
+                    //   // topLeftRadius: 50.r,
+                    //   topRightRadius: 50.r,
+                    //
+                    // ),
+                    unselectedLabelColor: Colors.black,
+                    onTap: (index) {
+                      controller.updateSelectedTab(index);
+                    },
+                    tabs: [
+                      AppTextStyle(
+                        text:
+                            meal == Get.find<HomeController>().canadianMeals[0]
+                                ? 'Pending'.tr
+                                : 'Pending'.tr,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                        height: 0,
+                        color: controller.selectedTabIndex.value == 0
+                            ? selectColor
+                            : unselectColor,
+                      ),
+                      AppTextStyle(
+                        text: 'Completed',
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                        height: 0,
+                        color: controller.selectedTabIndex.value == 1
+                            ? selectColor
+                            : unselectColor,
+                      ),
+                      AppTextStyleOverFlow(
+                        text: 'Canceled',
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                        height: 0,
+                        color: controller.selectedTabIndex.value == 2
+                            ? selectColor
+                            : unselectColor,
+                      ),
+                    ],
+                  )),
             ),
           ),
           Expanded(

@@ -5,24 +5,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:import_mark/app/modules/admin/dashboard/widgets/summary.dart';
 import 'package:import_mark/global/sizedbox_extension.dart';
-
 import '../../../../../gen/assets.gen.dart';
 import '../../../../../gen/colors.gen.dart';
-import '../../../../../global/loading_animation_widget.dart';
+import '../../../../routes/app_pages.dart';
 import '../controllers/dashboard_controller.dart';
 import 'option_item_lcon_label.dart';
 
 Container homepageBody() {
   final dashBoardController = Get.find<DashboardController>();
   return Container(
-    color: Color(0xffdee2e6),
+    color: ColorName.adminDashboardBodyColor,
     child: ListView(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      padding: const EdgeInsets.all(10),
+      padding:  EdgeInsets.all(15.r),
       children: [
         const Summary(
-            firstContainerNumber: '\$ 120000',
+            firstContainerNumber: '\$ 12000',
             firstContainerText: 'Today Sell',
             secondContainerNumber: '590',
             secondContainerText: 'Pending',
@@ -38,30 +37,30 @@ Container homepageBody() {
             return InkWell(
               onTap: () {
                 if (index == 0) {
-                  // Get.toNamed(Routes.RECENT_ORDERS);
+                  Get.toNamed(Routes.RECENT_ORDERS);
                 } else if (index == 1) {
-                  // Get.toNamed(Routes.SALES_SUMMARY);
+                  Get.toNamed(Routes.SALES_SUMMARY);
                 } else if (index == 2) {
-                  // Get.toNamed(Routes.MY_ORDER);
+                  Get.toNamed(Routes.ORDERS);
                 } else if (index == 3) {
-                  // Get.toNamed(Routes.STOCKS);
+                  Get.toNamed(Routes.STOCKS);
                 } else if (index == 4) {
-                  // Get.toNamed(Routes.ADD_PRODUCT);
+                  Get.toNamed(Routes.ADD_PRODUCT);
                 } else if (index == 5) {
                   // final ProductsController productsController =
                   //     Get.put(ProductsController());
                   // productsController.isLoading.value = 0;
                   // productsController.fetchProducts(page: null);
-                  // Get.toNamed(Routes.EDIT_PRODUCT);
+                  Get.toNamed(Routes.EDIT_PRODUCT);
                 } else if (index == 6) {
-                  // Get.toNamed(Routes.CUSTOMER);
+                  Get.toNamed(Routes.CUSTOMERS);
                 } else {
                   // Get.toNamed(Routes.SUPPORT);
                 }
               },
               child: ClayContainer(
                 curveType: CurveType.concave,
-                color: Color(0xffdee2e6),
+                color: ColorName.adminDashboardBodyColor,
                 borderRadius: 10.r,
                 child: OptionItemLabel(
                     title: optionItem[index].title!,

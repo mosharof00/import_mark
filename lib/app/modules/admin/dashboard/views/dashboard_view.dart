@@ -1,9 +1,7 @@
 import 'package:draggable_home/draggable_home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
-
 import '../../../../../gen/colors.gen.dart';
 import '../../../../../global/app_text_style.dart';
 import '../controllers/dashboard_controller.dart';
@@ -17,7 +15,7 @@ class DashboardView extends GetView<DashboardController> {
   Widget build(BuildContext context) {
     Get.put(DashboardController());
     return DraggableHome(
-      backgroundColor: ColorName.bgColor,
+      backgroundColor: ColorName.adminDashboardBodyColor,
       scrollController: controller.scrollController,
       leading: IconButton(
         onPressed: () {

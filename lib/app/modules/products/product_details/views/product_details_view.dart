@@ -66,7 +66,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
               ),
               actions: [
                 Obx(
-                      () => badges.Badge(
+                  () => badges.Badge(
                     position: badges.BadgePosition.topEnd(top: -5, end: -2),
                     showBadge: true,
                     ignorePointer: false,
@@ -120,7 +120,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                 ),
                 Padding(
                   padding:
-                  EdgeInsets.only(top: 10.h, bottom: 10.h, right: 10.w),
+                      EdgeInsets.only(top: 10.h, bottom: 10.h, right: 10.w),
                   child: InkWell(
                     onTap: () {},
                     child: Container(
@@ -163,47 +163,47 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
             ///  End of Image part  ///
             SliverList(
                 delegate: SliverChildListDelegate([
-                  SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.w),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          10.height,
-                          AppTextStyle(
-                            text: meal.strMeal.toString(),
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w800,
-                          ),
-                          5.height,
-                          AppTextStyle(
-                            text: "Tk.300",
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w800,
-                            textAlign: TextAlign.start,
-                          ),
-                          // fixedIcon(),
-                          divider(),
-                          const ReadMoreText(
-                            "Introducing Sunrise Berry Blast Smoothie Cubes - the convenient and delicious way to jumpstart your day! Packed with real fruit like tart blueberries, juicy strawberries, and antioxidant-rich raspberries, these pre-portioned cubes are bursting with flavor. Simply pop a handful into your blender with your favorite milk or plant-based alternative, add a touch of honey if desired, and blitz for a refreshing and nutritious smoothie in seconds.",
-                            trimMode: TrimMode.Line,
-                            trimLines: 2,
-                            colorClickableText: ColorName.primaryColor,
-                            trimCollapsedText: 'see more',
-                            trimExpandedText: 'see less',
-                            moreStyle: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: ColorName.primaryColor),
-                          ),
-
-                          divider(),
-                        ],
+              SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      10.height,
+                      AppTextStyle(
+                        text: meal.strMeal.toString(),
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w800,
                       ),
-                    ),
+                      5.height,
+                      AppTextStyle(
+                        text: "Tk.300",
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w800,
+                        textAlign: TextAlign.start,
+                      ),
+                      // fixedIcon(),
+                      divider(),
+                      const ReadMoreText(
+                        "Introducing Sunrise Berry Blast Smoothie Cubes - the convenient and delicious way to jumpstart your day! Packed with real fruit like tart blueberries, juicy strawberries, and antioxidant-rich raspberries, these pre-portioned cubes are bursting with flavor. Simply pop a handful into your blender with your favorite milk or plant-based alternative, add a touch of honey if desired, and blitz for a refreshing and nutritious smoothie in seconds.",
+                        trimMode: TrimMode.Line,
+                        trimLines: 2,
+                        colorClickableText: ColorName.primaryColor,
+                        trimCollapsedText: 'see more',
+                        trimExpandedText: 'see less',
+                        moreStyle: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: ColorName.primaryColor),
+                      ),
+
+                      divider(),
+                    ],
                   ),
-                ]))
+                ),
+              ),
+            ]))
           ],
         ),
 
@@ -211,7 +211,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
 
         bottomNavigationBar: Obx(() {
           final productCarted =
-          cartController.cartedItemsList.contains(meal.idMeal);
+              cartController.cartedItemsList.contains(meal.idMeal);
           return Row(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -247,21 +247,21 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                     child: AddToCartButton(
                       trolley: !productCarted
                           ? const Padding(
-                        padding: EdgeInsets.only(left: 8.0),
-                        child: Icon(
-                          Icons.shopping_cart_rounded,
-                          color: ColorName.white,
-                          size: 30,
-                        ),
-                      )
+                              padding: EdgeInsets.only(left: 8.0),
+                              child: Icon(
+                                Icons.shopping_cart_rounded,
+                                color: ColorName.white,
+                                size: 30,
+                              ),
+                            )
                           : Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Icon(
-                          MdiIcons.cartCheck,
-                          color: ColorName.white,
-                          size: 30,
-                        ),
-                      ),
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: Icon(
+                                MdiIcons.cartCheck,
+                                color: ColorName.white,
+                                size: 30,
+                              ),
+                            ),
                       text: AppTextStyle(
                         text: 'Add to cart',
                         color: Colors.white,
@@ -294,17 +294,13 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                                 .updateStateId(AddToCartButtonStateId.done);
                             Future.delayed(const Duration(seconds: 2));
                             awesomeAlertDialog(
-                              context,
-                              DialogType.success,
-                              'Awesome! Product Carted',
-                              'Want to Continue Shopping',
-                              'Go to Cart',
-                                  () {
-                                Get.toNamed(Routes.CART);
-                              },
-                              'Continue',
-                                  () {},
-                            );
+                                context,
+                                DialogType.success,
+                                'Awesome! Product Carted',
+                                'Want to Continue Shopping',
+                                'Go to Cart', () {
+                              Get.toNamed(Routes.CART);
+                            }, 'Continue', () {}, false);
                           });
                         } else if (id == AddToCartButtonStateId.done &&
                             productCarted) {

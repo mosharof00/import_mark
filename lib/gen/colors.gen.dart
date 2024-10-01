@@ -13,6 +13,9 @@ import 'package:flutter/material.dart';
 class ColorName {
   ColorName._();
 
+  /// Color: #dee2e6
+  static const Color adminDashboardBodyColor = Color(0xFFDEE2E6);
+
   /// Color: #59e5d0
   static const Color adminPrimaryColor = Color(0xFF59E5D0);
 

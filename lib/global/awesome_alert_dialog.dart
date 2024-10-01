@@ -9,15 +9,16 @@ import '../gen/colors.gen.dart';
 final player = AudioPlayer();
 
 void awesomeAlertDialog(
-  BuildContext context,
-  DialogType dialogType,
-  String? title,
-  String? desc,
-  String? cancelBtnText,
-  VoidCallback btnCancelOnPress,
-  String? okBtnText,
-  VoidCallback btnOkOnPress,
-) {
+    BuildContext context,
+    DialogType dialogType,
+    String? title,
+    String? desc,
+    String? cancelBtnText,
+    VoidCallback btnCancelOnPress,
+    String? okBtnText,
+    VoidCallback btnOkOnPress,
+    bool? dismisableTouchOutside,
+    ) {
   AwesomeDialog(
     context: context,
     dialogType: dialogType,
@@ -33,6 +34,7 @@ void awesomeAlertDialog(
       fontSize: 14.sp,
       fontWeight: FontWeight.w500,
     ),
+    dismissOnTouchOutside: dismisableTouchOutside ?? true,
     btnCancelColor: ColorName.gray410,
     btnOkColor: ColorName.primaryColor,
     btnCancelText: cancelBtnText?.tr ?? 'Cancel'.tr,
