@@ -75,7 +75,7 @@ class ActiveOrders extends GetView<OrdersController> {
                 onTap: () {
                   if (controller.selectedTabIndex.value == 2) {
                     Get.toNamed(
-                      Routes.PRODUCT_DETAILS,
+                      Routes.ORDER_DETAILS,
                       arguments: meal,
                     );
                   }

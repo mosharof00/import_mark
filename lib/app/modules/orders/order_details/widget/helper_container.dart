@@ -4,22 +4,24 @@ import 'package:get/get.dart';
 import 'package:import_mark/global/sizedbox_extension.dart';
 import '../../../../../gen/colors.gen.dart';
 import '../../../../../global/app_text_style.dart';
-import '../../../../global/app_text_style_over_flow.dart';
-import 'divider.dart';
+import '../../../../../global/app_text_style_over_flow.dart';
+import '../../../../../global/divider.dart';
+
+
 
 Widget helperContainer(
     {required Widget icon,
-    required String text,
-    required Widget leading,
-    required String titleText,
-    required String subtitleText,
-    double? containerHeight,
-    double? containerWidth,
-    VoidCallback? onPressed,
-    Widget? trailWidget,
-    Color? borderColor,
-    required bool isTrailing,
-    bool? showIcon}) {
+      required String text,
+      required Widget leading,
+      required String titleText,
+      required String subtitleText,
+      double? containerHeight,
+      double? containerWidth,
+      VoidCallback? onPressed,
+      Widget? trailWidget,
+      Color? borderColor,
+      required bool isTrailing,
+      bool? showIcon}) {
   return InkWell(
     onTap: onPressed,
     borderRadius: BorderRadius.circular(15.r),
@@ -28,9 +30,7 @@ Widget helperContainer(
       height: containerHeight,
       decoration: BoxDecoration(
         color: ColorName.white,
-        border: Border.all(
-          color: borderColor ?? Colors.transparent,
-        ),
+        border: Border.all(color: borderColor ?? Colors.transparent,),
         borderRadius: BorderRadius.circular(15.r),
       ),
       child: Column(
@@ -53,9 +53,9 @@ Widget helperContainer(
                 const Spacer(),
                 showIcon == true
                     ? const Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 20,
-                      )
+                  Icons.arrow_forward_ios_rounded,
+                  size: 20,
+                )
                     : 0.width,
               ],
             ),
@@ -80,19 +80,19 @@ Widget helperContainer(
                 textAlign: TextAlign.start,
               ),
             ),
-            subtitle: subtitleText != ''
-                ? Align(
-                    alignment: Alignment.bottomLeft,
-                    child: AppTextStyleOverFlow(
-                      maxLines: 1,
-                      text: subtitleText,
-                      color: Colors.grey,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  )
+            subtitle: subtitleText != '' ? Align(
+              alignment: Alignment.bottomLeft,
+              child: AppTextStyleOverFlow(
+                maxLines: 1,
+                text: subtitleText,
+                color: Colors.grey,
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w400,
+              ),
+            ) : const SizedBox.shrink(),
+            trailing: isTrailing
+                ? trailWidget
                 : const SizedBox.shrink(),
-            trailing: isTrailing ? trailWidget : const SizedBox.shrink(),
           ),
         ],
       ),
@@ -132,3 +132,5 @@ Widget summaryOptionsRow({
     ],
   );
 }
+
+
