@@ -36,6 +36,8 @@ abstract class Routes {
   static const ORDER_INFO =
       _Paths.ADMIN + _Paths.RECENT_ORDERS + _Paths.ORDER_INFO;
   static const PAYMENT_METHODS = _Paths.PAYMENT_METHODS;
+  static const STOCK_DETAILS =
+      _Paths.ADMIN + _Paths.STOCKS + _Paths.STOCK_DETAILS;
 }
 
 abstract class _Paths {
@@ -70,4 +72,5 @@ abstract class _Paths {
   static const ALL_ORDERS = '/all-orders';
   static const ORDER_INFO = '/order-info';
   static const PAYMENT_METHODS = '/payment-methods';
+  static const STOCK_DETAILS = '/stock-details';
 }

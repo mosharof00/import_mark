@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:import_mark/global/app_text_style.dart';
+import 'package:import_mark/global/sizedbox_extension.dart';
 import '../../../../../gen/assets.gen.dart';
 import '../../../../../gen/colors.gen.dart';
 import '../../../../../global/badges_widget.dart';
@@ -28,7 +29,7 @@ Widget headerWidget(BuildContext context) {
           ClipPath(
             // clipper: OvalBottomBorderClipper(),
             child: Container(
-              height: 290.h,
+              height: 200.h,
               color: ColorName.adminPrimaryColor,
               child: SafeArea(
                 child: Padding(
@@ -49,25 +50,32 @@ Widget headerWidget(BuildContext context) {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
+                                15.width,
                                 GestureDetector(
                                   onTap: () {
-                                    Get.put(ProfileController()).isAdmin.value = false;
-                                    Get.put(ProfileController()).isFromNaveBar.value = false;
+                                    Get.put(ProfileController()).isAdmin.value =
+                                        false;
+                                    Get.put(ProfileController())
+                                        .isFromNaveBar
+                                        .value = false;
                                     Navigator.push(
                                       context,
                                       PageRouteBuilder(
-                                        pageBuilder: (context, animation, secondaryAnimation) =>
-                                        const ProfileView(),
-                                        transitionsBuilder:
-                                            (context, animation, secondaryAnimation, child) {
-                                          const begin =
-                                          Offset(-1.0, 0.0); // Start from the left
+                                        pageBuilder: (context, animation,
+                                                secondaryAnimation) =>
+                                            const ProfileView(),
+                                        transitionsBuilder: (context, animation,
+                                            secondaryAnimation, child) {
+                                          const begin = Offset(
+                                              -1.0, 0.0); // Start from the left
                                           const end = Offset.zero;
                                           const curve = Curves.easeInOut;
 
-                                          var tween = Tween(begin: begin, end: end)
+                                          var tween = Tween(
+                                                  begin: begin, end: end)
                                               .chain(CurveTween(curve: curve));
-                                          var offsetAnimation = animation.drive(tween);
+                                          var offsetAnimation =
+                                              animation.drive(tween);
                                           return SlideTransition(
                                             position: offsetAnimation,
                                             child: child,
@@ -80,8 +88,9 @@ Widget headerWidget(BuildContext context) {
                                     tag: const Key('image'),
                                     child: CachedNetworkImage(
                                       imageUrl:
-                                      'https://www.photodoozy.com/uploads/thumbs/mehmet-s-rainy-day-hyperrealistic-3d-ai-profile-picture-with-cute-cat-and-lovely-after-rain-vibes-photodoozy.jpg',
-                                      imageBuilder: (context, imageProvider) => Container(
+                                          'https://www.photodoozy.com/uploads/thumbs/mehmet-s-rainy-day-hyperrealistic-3d-ai-profile-picture-with-cute-cat-and-lovely-after-rain-vibes-photodoozy.jpg',
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
                                         width: 60.0.w,
                                         height: 60.0.h,
                                         decoration: BoxDecoration(
@@ -92,14 +101,17 @@ Widget headerWidget(BuildContext context) {
                                           ),
                                         ),
                                       ),
-                                      placeholder: (context, url) => shimmerLoadingWidget(
-                                          borderRadius: 50, height: 60.0.h, width: 60.0.w),
+                                      placeholder: (context, url) =>
+                                          shimmerLoadingWidget(
+                                              borderRadius: 50,
+                                              height: 60.0.h,
+                                              width: 60.0.w),
                                       errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error),
+                                          const Icon(Icons.error),
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: 10.w),
+                                10.width,
                                 Column(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -194,6 +206,7 @@ Widget headerWidget(BuildContext context) {
             child: Obx(
               () => badgeWidget(
                 badgeColor: ColorName.adminPrimaryColor,
+                borderColor: ColorName.white,
                 count: dashBoardController.notificationCount.value,
                 onTap: () {
                   Get.toNamed(Routes.NOTIFICATION);

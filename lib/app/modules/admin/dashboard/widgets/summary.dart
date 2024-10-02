@@ -1,3 +1,4 @@
+import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../gen/colors.gen.dart';
@@ -66,29 +67,29 @@ class SummaryOfOrders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 90.h,
-      margin: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.r),
-        color: Colors.white10,
-      ),
-      padding: const EdgeInsets.all(10),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AppTextStyle(
-                text: title,
-                color: ColorName.white,
-                fontSize: 20,
-                fontWeight: FontWeight.w500),
-            AppTextStyle(
-                text: desc,
-                color: ColorName.white.withOpacity(0.6),
-                fontSize: 12,
-                fontWeight: FontWeight.w500),
-          ],
+    return Padding(
+      padding:  EdgeInsets.all(10.r),
+      child: ClayContainer(
+        color: ColorName.adminPrimaryColor.withOpacity(0.9),
+        height: 90.h,
+        curveType: CurveType.convex,
+        borderRadius: 8.r,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AppTextStyle(
+                  text: title,
+                  color: ColorName.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500),
+              AppTextStyle(
+                  text: desc,
+                  color: ColorName.white.withOpacity(0.6),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500),
+            ],
+          ),
         ),
       ),
     );

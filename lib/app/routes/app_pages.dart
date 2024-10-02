@@ -24,6 +24,8 @@ import '../modules/admin/recent_orders/views/recent_orders_view.dart';
 import '../modules/admin/sales_summary/bindings/sales_summary_binding.dart';
 import '../modules/admin/sales_summary/views/sales_summary_view.dart';
 import '../modules/admin/stocks/bindings/stocks_binding.dart';
+import '../modules/admin/stocks/stock_details/bindings/stock_details_binding.dart';
+import '../modules/admin/stocks/stock_details/views/stock_details_view.dart';
 import '../modules/admin/stocks/views/stocks_view.dart';
 import '../modules/admin/views/admin_view.dart';
 import '../modules/cart/bindings/cart_binding.dart';
@@ -142,6 +144,13 @@ class AppPages {
           name: _Paths.STOCKS,
           page: () => const StocksView(),
           binding: StocksBinding(),
+          children: [
+            GetPage(
+              name: _Paths.STOCK_DETAILS,
+              page: () => const StockDetailsView(),
+              binding: StockDetailsBinding(),
+            ),
+          ],
         ),
       ],
     ),

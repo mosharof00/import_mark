@@ -58,12 +58,15 @@ class OrdersView extends GetView<OrdersController> {
                     tabAlignment: TabAlignment.fill,
                     controller: controller.tabController,
                     dividerColor: Colors.transparent,
-                    automaticIndicatorColorAdjustment: true,
+                automaticIndicatorColorAdjustment: true,
+                labelPadding: const EdgeInsets.all(8),
                     indicatorSize: TabBarIndicatorSize.tab,
                     indicator: UnderlineTabIndicator(
                         borderSide: BorderSide(
                             width: 3.w, color: ColorName.primaryColor),
-                        insets: EdgeInsets.zero),
+                        insets: EdgeInsets.zero,
+
+                    ),
                     // RectangularIndicator(
                     //   color: ColorName.primaryColor,
                     //   bottomLeftRadius: 50.r,

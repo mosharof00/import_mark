@@ -109,6 +109,7 @@ class HomeAppBar extends StatelessWidget {
                 const Spacer(),
                 Obx(
                   () => badgeWidget(
+                    badgeColor: ColorName.primaryColor,
                     count: Get.find<HomeController>().notificationCount.value,
                     onTap: () {
                       Get.toNamed(Routes.NOTIFICATION);

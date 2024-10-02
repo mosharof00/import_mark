@@ -18,16 +18,16 @@ Container homepageBody() {
     child: ListView(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      padding:  EdgeInsets.all(15.r),
+      padding:  EdgeInsets.only(left:15.w,right: 15.w,bottom: 15.h),
       children: [
         const Summary(
-            firstContainerNumber: '\$ 12000',
+            firstContainerNumber: '\$12000',
             firstContainerText: 'Today Sell',
             secondContainerNumber: '590',
             secondContainerText: 'Pending',
             thirdContainerNumber: '97',
             thirdContainerText: 'Active Order'),
-        10.height,
+        20.height,
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
