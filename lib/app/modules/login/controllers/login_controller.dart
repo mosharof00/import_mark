@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:rounded_loading_button_plus/rounded_loading_button.dart';
@@ -6,7 +7,8 @@ class LoginController extends GetxController {
   //TODO: Implement LoginController
   // Loading button
   RoundedLoadingButtonController btnController =
-  RoundedLoadingButtonController();
+      RoundedLoadingButtonController();
+  final FirebaseAuth auth = FirebaseAuth.instance;
   // Is remember me
   RxBool boxCheck = true.obs;
   // Password visibility

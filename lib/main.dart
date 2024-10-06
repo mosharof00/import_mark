@@ -1,10 +1,12 @@
 import 'dart:io';
 // import 'package:firebase_core/firebase_core.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:import_mark/firebase_options.dart';
 // import 'package:shopaholic_seller/app/modules/splash_screen/bindings/splash_screen_binding.dart';
 // import 'package:shopaholic_seller/app/routes/app_pages.dart';
 // import 'package:shopaholic_seller/global/log_printer.dart';
@@ -20,17 +22,16 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   ///    Initialize Firebase
-  // if(Platform.isIOS){
-  //   await Firebase.initializeApp(
-  //     options: DefaultFirebaseOptions.currentPlatform,
-  //   );
-  // }
-  // else{
-  //   await Firebase.initializeApp(
-  //     name:'Shopaholic-Vendor',
-  //     options: DefaultFirebaseOptions.currentPlatform,
-  //   );
-  // }
+  if (Platform.isIOS) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } else {
+    await Firebase.initializeApp(
+      name: 'import-mark',
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
 
   await _setupApp();
   runApp(const MyApp());
