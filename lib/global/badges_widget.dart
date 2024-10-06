@@ -4,13 +4,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../gen/colors.gen.dart';
 import 'app_text_style.dart';
 
-Widget badgeWidget({int? count, Function()? onTap, required Widget icon}) {
+Widget badgeWidget({
+  int? count,
+  Function()? onTap,
+  required Widget icon,
+  Color? badgeColor,
+  Color? borderColor,
+  Color? countColor,
+}) {
   return Container(
     margin: EdgeInsets.all(3.r),
     // padding: EdgeInsets.all(3.r),
     decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(width: 1, color: Colors.grey.shade200)),
+        border:
+            Border.all(width: 1, color: borderColor ?? Colors.grey.shade200)),
     child: badges.Badge(
       position: badges.BadgePosition.topEnd(top: 1, end: 5),
       showBadge: true,
@@ -18,7 +26,7 @@ Widget badgeWidget({int? count, Function()? onTap, required Widget icon}) {
       onTap: onTap,
       badgeContent: AppTextStyle(
         text: 3.toString(),
-        color: ColorName.white,
+        color: countColor ?? ColorName.white,
         fontSize: 10.sp,
       ),
       badgeAnimation: const badges.BadgeAnimation.slide(
@@ -30,14 +38,14 @@ Widget badgeWidget({int? count, Function()? onTap, required Widget icon}) {
       ),
       badgeStyle: badges.BadgeStyle(
         shape: badges.BadgeShape.circle,
-        badgeColor: Colors.blue,
+        badgeColor: badgeColor ?? Colors.blue,
         padding: const EdgeInsets.all(4),
         borderRadius: BorderRadius.circular(4),
-        badgeGradient: const badges.BadgeGradient.linear(
-          colors: [ColorName.gradientStart, ColorName.gradientEnd],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
+        // badgeGradient: const badges.BadgeGradient.linear(
+        //   colors: [ColorName.gradientStart, ColorName.gradientEnd],
+        //   begin: Alignment.topCenter,
+        //   end: Alignment.bottomCenter,
+        // ),
         elevation: 0,
       ),
       child: IconButton(

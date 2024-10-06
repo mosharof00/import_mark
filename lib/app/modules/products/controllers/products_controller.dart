@@ -1,23 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ProductsController extends GetxController {
   //TODO: Implement ProductsController
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+  ScrollController scrollController = ScrollController();
 }

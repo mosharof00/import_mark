@@ -75,7 +75,7 @@ class ProfileView extends GetView<ProfileController> {
                 ),
                 labels(text: 'Mosharof Khan', fontSize: 20.sp),
                 labels(
-                    text: 'hi',
+                    text: 'mosharof5khan@gmail.com',
                     fontSize: 12.sp,
                     color: ColorName.gray410),
               ],

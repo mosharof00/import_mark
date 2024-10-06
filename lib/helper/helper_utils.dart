@@ -15,7 +15,10 @@ import '../gen/assets.gen.dart';
 
 class HelperUtils {
   /// Logo
-  static String appLogo = Assets.images.logoPng.path;
+  static String appLogo = Assets.images.logo.path;
+
+  ///  Currency Symbol
+ static String currencySymbol ='৳';
 
   static String firebaseToken = "";
   static bool isLogin = false;
@@ -26,6 +29,7 @@ class HelperUtils {
   static String flashSales = 'flash_sale';
   static String specialOffers = 'special_offer';
   static String trendingProducts = 'trading';
+
 
   ///   product status
   static String productActiveStatus = "Active";

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "191554436392",
+    "project_id": "import-mark",
+    "storage_bucket": "import-mark.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191554436392:android:e84afc21cf90b58854641d",
+        "android_client_info": {
+          "package_name": "com.mosharof"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBzQPRp5opHP_CHkAizZZnJy1brAfrwaU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

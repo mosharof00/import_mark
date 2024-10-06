@@ -13,6 +13,12 @@ import 'package:flutter/material.dart';
 class ColorName {
   ColorName._();
 
+  /// Color: #dee2e6
+  static const Color adminDashboardBodyColor = Color(0xFFDEE2E6);
+
+  /// Color: #59e5d0
+  static const Color adminPrimaryColor = Color(0xFF59E5D0);
+
   /// Color: #FFBF00
   static const Color amber = Color(0xFFFFBF00);
 
@@ -82,8 +88,8 @@ class ColorName {
   /// Color: #06F8F4
   static const Color pest = Color(0xFF06F8F4);
 
-  /// Color: #2575fc
-  static const Color primaryColor = Color(0xFF2575FC);
+  /// Color: #6a040f
+  static const Color primaryColor = Color(0xFF6A040F);
 
   /// Color: #F8F9C7
   static const Color start = Color(0xFFF8F9C7);

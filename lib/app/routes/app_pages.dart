@@ -1,12 +1,32 @@
 import 'package:get/get.dart';
 
+import '../modules/admin/add_product/bindings/add_product_binding.dart';
+import '../modules/admin/add_product/views/add_product_view.dart';
 import '../modules/admin/admin_main_page/bindings/admin_main_page_binding.dart';
 import '../modules/admin/admin_main_page/views/admin_main_page_view.dart';
 import '../modules/admin/bindings/admin_binding.dart';
+import '../modules/admin/customers/bindings/customers_binding.dart';
+import '../modules/admin/customers/customer_details/bindings/customer_details_binding.dart';
+import '../modules/admin/customers/customer_details/views/customer_details_view.dart';
+import '../modules/admin/customers/views/customers_view.dart';
 import '../modules/admin/dashboard/bindings/dashboard_binding.dart';
 import '../modules/admin/dashboard/views/dashboard_view.dart';
+import '../modules/admin/edit_product/bindings/edit_product_binding.dart';
+import '../modules/admin/edit_product/views/edit_product_view.dart';
 import '../modules/admin/financial/bindings/financial_binding.dart';
 import '../modules/admin/financial/views/financial_view.dart';
+import '../modules/admin/recent_orders/all_orders/bindings/all_orders_binding.dart';
+import '../modules/admin/recent_orders/all_orders/views/all_orders_view.dart';
+import '../modules/admin/recent_orders/bindings/recent_orders_binding.dart';
+import '../modules/admin/recent_orders/order_info/bindings/order_info_binding.dart';
+import '../modules/admin/recent_orders/order_info/views/order_info_view.dart';
+import '../modules/admin/recent_orders/views/recent_orders_view.dart';
+import '../modules/admin/sales_summary/bindings/sales_summary_binding.dart';
+import '../modules/admin/sales_summary/views/sales_summary_view.dart';
+import '../modules/admin/stocks/bindings/stocks_binding.dart';
+import '../modules/admin/stocks/stock_details/bindings/stock_details_binding.dart';
+import '../modules/admin/stocks/stock_details/views/stock_details_view.dart';
+import '../modules/admin/stocks/views/stocks_view.dart';
 import '../modules/admin/views/admin_view.dart';
 import '../modules/cart/bindings/cart_binding.dart';
 import '../modules/cart/views/cart_view.dart';
@@ -25,7 +45,11 @@ import '../modules/notification/views/notification_view.dart';
 import '../modules/onboard/bindings/onboard_binding.dart';
 import '../modules/onboard/views/onboard_view.dart';
 import '../modules/orders/bindings/orders_binding.dart';
+import '../modules/orders/order_details/bindings/order_details_binding.dart';
+import '../modules/orders/order_details/views/order_details_view.dart';
 import '../modules/orders/views/orders_view.dart';
+import '../modules/payment_methods/bindings/payment_methods_binding.dart';
+import '../modules/payment_methods/views/payment_methods_view.dart';
 import '../modules/products/bindings/products_binding.dart';
 import '../modules/products/product_details/bindings/product_details_binding.dart';
 import '../modules/products/product_details/views/product_details_view.dart';
@@ -71,6 +95,62 @@ class AppPages {
           name: _Paths.FINANCIAL,
           page: () => const FinancialView(),
           binding: FinancialBinding(),
+        ),
+        GetPage(
+          name: _Paths.RECENT_ORDERS,
+          page: () => const RecentOrdersView(),
+          binding: RecentOrdersBinding(),
+          children: [
+            GetPage(
+              name: _Paths.ALL_ORDERS,
+              page: () => const AllOrdersView(),
+              binding: AllOrdersBinding(),
+            ),
+            GetPage(
+              name: _Paths.ORDER_INFO,
+              page: () => const OrderInfoView(),
+              binding: OrderInfoBinding(),
+            ),
+          ],
+        ),
+        GetPage(
+          name: _Paths.SALES_SUMMARY,
+          page: () => const SalesSummaryView(),
+          binding: SalesSummaryBinding(),
+        ),
+        GetPage(
+          name: _Paths.ADD_PRODUCT,
+          page: () => const AddProductView(),
+          binding: AddProductBinding(),
+        ),
+        GetPage(
+          name: _Paths.CUSTOMERS,
+          page: () => const CustomersView(),
+          binding: CustomersBinding(),
+          children: [
+            GetPage(
+              name: _Paths.CUSTOMER_DETAILS,
+              page: () => const CustomerDetailsView(),
+              binding: CustomerDetailsBinding(),
+            ),
+          ],
+        ),
+        GetPage(
+          name: _Paths.EDIT_PRODUCT,
+          page: () => const EditProductView(),
+          binding: EditProductBinding(),
+        ),
+        GetPage(
+          name: _Paths.STOCKS,
+          page: () => const StocksView(),
+          binding: StocksBinding(),
+          children: [
+            GetPage(
+              name: _Paths.STOCK_DETAILS,
+              page: () => const StockDetailsView(),
+              binding: StockDetailsBinding(),
+            ),
+          ],
         ),
       ],
     ),
@@ -118,6 +198,13 @@ class AppPages {
       name: _Paths.ORDERS,
       page: () => const OrdersView(),
       binding: OrdersBinding(),
+      children: [
+        GetPage(
+          name: _Paths.ORDER_DETAILS,
+          page: () => const OrderDetailsView(),
+          binding: OrderDetailsBinding(),
+        ),
+      ],
     ),
     GetPage(
       name: _Paths.PRODUCTS,
@@ -147,6 +234,11 @@ class AppPages {
       name: _Paths.CHECKOUT,
       page: () => const CheckoutView(),
       binding: CheckoutBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAYMENT_METHODS,
+      page: () => const PaymentMethodsView(),
+      binding: PaymentMethodsBinding(),
     ),
   ];
 }
