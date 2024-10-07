@@ -72,7 +72,7 @@ class SummaryOfOrders extends StatelessWidget {
       child: ClayContainer(
         color: ColorName.adminPrimaryColor.withOpacity(0.9),
         height: 90.h,
-        curveType: CurveType.convex,
+        curveType: CurveType.none,
         borderRadius: 8.r,
         child: Center(
           child: Column(
