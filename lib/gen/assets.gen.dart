@@ -422,8 +422,8 @@ class $AssetsImagesGen {
   AssetGenImage get lockAnimationIcon =>
       const AssetGenImage('assets/images/lock_animation_icon.gif');
 
-  /// File path: assets/images/logo.png
-  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+  /// File path: assets/images/logo .png
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo .png');
 
   /// File path: assets/images/logout.svg
   String get logout => 'assets/images/logout.svg';

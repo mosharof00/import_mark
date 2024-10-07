@@ -1,4 +1,4 @@
-package com.mosharof.import_mark
+package com.mosharof
 
 import io.flutter.embedding.android.FlutterActivity
 
