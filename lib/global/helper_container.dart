@@ -117,7 +117,7 @@ Widget summaryOptionsRow({
       AppTextStyle(
         text: leadingText,
         color: leadingTextColor ?? Colors.black,
-        fontWeight: fontWeightLeadingText ?? FontWeight.w500,
+        fontWeight: fontWeightLeadingText ?? FontWeight.w400,
         fontSize: fontSizeLeadingText ?? 14.sp,
       ),
       const Spacer(),

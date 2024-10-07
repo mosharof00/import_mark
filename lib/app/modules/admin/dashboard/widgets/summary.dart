@@ -34,7 +34,7 @@ class Summary extends StatelessWidget {
         children: [
           Expanded(
             flex: 1,
-            child:  SummaryOfOrders(
+            child: SummaryOfOrders(
               title: firstContainerNumber.toString(),
               desc: firstContainerText,
             ),
@@ -68,7 +68,7 @@ class SummaryOfOrders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.all(10.r),
+      padding: EdgeInsets.all(10.r),
       child: ClayContainer(
         color: ColorName.adminPrimaryColor.withOpacity(0.9),
         height: 90.h,

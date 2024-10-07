@@ -14,12 +14,15 @@ import '../../../../global/app_text_style_over_flow.dart';
 
 import '../../../../global/divider.dart';
 import '../../../../global/global_button.dart';
+import '../../../../global/methods/order_status_color.dart';
 import '../../../../global/money_frame.dart';
 import '../../../../global/shimmer_loading.dart';
 import '../../../../global/staggered_scale_list_animation.dart';
 import '../../../../global/text_widgets.dart';
 import '../../../models/foods_product_model.dart';
 import '../../../routes/app_pages.dart';
+import '../../admin/recent_orders/controllers/recent_orders_controller.dart';
+import '../../admin/sales_summary/widgets/product_labels.dart';
 import '../../home/controllers/home_controller.dart';
 import '../controllers/orders_controller.dart';
 import 'cancel_order_bottom_sheet.dart';
@@ -73,16 +76,14 @@ class ActiveOrders extends GetView<OrdersController> {
               padding: EdgeInsets.all(10.r),
               child: InkWell(
                 onTap: () {
-                  if (controller.selectedTabIndex.value == 2) {
-                    Get.toNamed(
-                      Routes.ORDER_DETAILS,
-                      arguments: meal,
-                    );
-                  }
+                  Get.toNamed(
+                    Routes.ORDER_DETAILS,
+                    arguments: meal,
+                  );
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.r),
+                      borderRadius: BorderRadius.circular(8.r),
                       color: ColorName.white,
                       boxShadow: const [
                         BoxShadow(
@@ -219,23 +220,47 @@ class ActiveOrders extends GetView<OrdersController> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(15.r),
-                              child: CachedNetworkImage(
-                                height: 80.h,
-                                width: 80.w,
-                                imageUrl: meal.strMealThumb.toString(),
-                                fit: BoxFit.fill,
-                                placeholder: (context, url) =>
-                                    shimmerLoadingWidget(
-                                        height: 70.h, width: 70.w),
-                                errorWidget: (context, url, error) =>
-                                    Image.asset(
-                                  Assets.images.phoneimage.path,
-                                  width: Get.width,
+                            Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(9.r),
+                                  child: CachedNetworkImage(
+                                    height: 80.h,
+                                    width: 80.w,
+                                    imageUrl: meal.strMealThumb.toString(),
+                                    fit: BoxFit.fill,
+                                    placeholder: (context, url) =>
+                                        shimmerLoadingWidget(
+                                            height: 70.h,
+                                            width: 70.w,
+                                            borderRadius: 10.r),
+                                    errorWidget: (context, url, error) =>
+                                        Image.asset(
+                                      Assets.images.phoneimage.path,
+                                      width: Get.width,
+                                    ),
+                                  ),
+                                  // ),
                                 ),
-                              ),
-                              // ),
+                                Positioned(
+                                  top: 0,
+                                  left: 0,
+                                  child: Container(
+                                    height: 20.h,
+                                    width: 20.w,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: ColorName.primaryColor,
+                                    ),
+                                    child: Center(
+                                      child: AppTextStyle(
+                                        text: 2.toString(),
+                                        color: ColorName.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 13.w),
@@ -251,92 +276,60 @@ class ActiveOrders extends GetView<OrdersController> {
                                     fontSize: 14.sp,
                                   ),
                                   8.height,
-                                  Row(
-                                    children: [
-                                      productSubtitleText(text: "3 items"),
-                                      5.width,
-                                      customDivider(),
-                                      productSubtitleText(text: "1.3Km")
-                                    ],
+                                  moneyFrame(
+                                    iconWidth: 18.w,
+                                    iconHeight: 18.h,
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w800,
+                                    iconColor: ColorName.primaryColor,
+                                    text: '2.00',
+                                    textColor: ColorName.primaryColor,
                                   ),
                                   8.height,
                                   Row(
                                     children: [
-                                      moneyFrame(
-                                        iconWidth: 14.w,
-                                        iconHeight: 14.h,
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w800,
-                                        iconColor: ColorName.primaryColor,
-                                        text: '2.00',
-                                        textColor: ColorName.primaryColor,
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: 'paid' == "paid"
+                                                ? Colors.green
+                                                : ColorName.crimsonRed,
+                                            borderRadius:
+                                                BorderRadius.circular(10.r)),
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 10.w, vertical: 2.h),
+                                          child: const AppTextStyle(
+                                            // text: order.paymentStatus!.capitalize.toString(),
+                                            text: 'paid',
+                                            color: ColorName.white,
+                                          ),
+                                        ),
                                       ),
-                                      20.width,
-                                      controller.selectedTabIndex.value == 0
-                                          ? globalButton(
-                                              onTap: () {
-                                                Get.toNamed(
-                                                    Routes.ORDER_DETAILS);
-                                              },
-                                              text: "Track Order",
-                                              // blurRadius: 1,
-                                              shadowColor: Colors.transparent,
-                                              fontSize: 11.sp,
-                                              height: 28.h,
-                                              width: 110.w,
-                                            )
-                                          : controller.selectedTabIndex.value ==
-                                                  1
-                                              ? globalButton(
-                                                  onTap: () {
-                                                    // Get.toNamed(
-                                                    //     Routes.LEAVE_REVIEW);
-                                                  },
-                                                  text: "Leave a Review",
-                                                  // blurRadius: 1,
-                                                  shadowColor:
-                                                      Colors.transparent,
-                                                  fontSize: 11.sp,
-                                                  height: 28.h,
-                                                  width: 110.w,
-                                                )
-                                              : InkWell(
-                                                  onTap: () {
-                                                    Get.snackbar(
-                                                      'Sorry',
-                                                      'This product is already cancelled. \nYou have to order this again.',
-                                                      colorText:
-                                                          ColorName.white,
-                                                      backgroundColor: ColorName
-                                                          .primaryColor
-                                                          .withOpacity(0.3),
-                                                      duration: const Duration(
-                                                          seconds: 2),
-                                                    );
-                                                  },
-                                                  child: Container(
-                                                    height: 28.h,
-                                                    width: 100.w,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              50.r),
-                                                      border: Border.all(
-                                                          width: 1.w,
-                                                          color: Colors.red),
-                                                    ),
-                                                    child: Center(
-                                                      child: AppTextStyle(
-                                                        text: 'Cancelled',
-                                                        color: Colors.red,
-                                                        fontSize: 11.sp,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
+                                      50.width,
+                                      LabelContainer(
+                                        labelTitle:
+                                            controller.selectedTabIndex.value ==
+                                                    0
+                                                ? 'Pending'
+                                                : controller.selectedTabIndex
+                                                            .value ==
+                                                        1
+                                                    ? 'Completed'
+                                                    : 'Canceled',
+                                        containerColor:
+                                            OrderStatusColor.getColor(controller
+                                                        .selectedTabIndex
+                                                        .value ==
+                                                    0
+                                                ? 'Pending'
+                                                : controller.selectedTabIndex
+                                                            .value ==
+                                                        1
+                                                    ? 'Completed'
+                                                    : 'Canceled'),
+
+                                        fontSize: 12.sp,
+                                      ),
                                     ],
                                   ),
                                 ],
