@@ -190,8 +190,6 @@ class RecentOrderList extends StatelessWidget {
                           labelTitle: Get.find<RecentOrdersController>().selectedStatus.value,
                           containerColor:
                               OrderStatusColor.getColor(Get.find<RecentOrdersController>().selectedStatus.value),
-                          containerHeight: 22.h,
-                          containerWidth: 90.w,
                           fontSize: 12.sp,
                         ),
                       ],

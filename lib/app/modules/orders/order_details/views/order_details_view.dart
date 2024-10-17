@@ -59,7 +59,8 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                   ),
                   text: 'User Information',
                   leading: circularImage(
-                    imgUrl: 'https://i.pinimg.com/564x/8b/11/a8/8b11a86980c64720a41ec22332a83115.jpg',
+                    imgUrl:
+                        'https://i.pinimg.com/564x/8b/11/a8/8b11a86980c64720a41ec22332a83115.jpg',
                     radius: 22.r,
                   ),
                   firstTitleTextKey: 'Name :   ',
@@ -111,8 +112,7 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                             ),
                             10.width,
                             AppTextStyle(
-                              text:
-                              '${'Your Order'.tr} (${2})',
+                              text: '${'Your Order'.tr} (${2})',
                               fontWeight: FontWeight.w600,
                               fontSize: 16.sp,
                             ),
@@ -129,7 +129,7 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                           itemCount: 2,
                           itemBuilder: (context, index) {
                             final Meal orderProduct =
-                            Get.find<HomeController>().canadianMeals[index];
+                                Get.find<HomeController>().canadianMeals[index];
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
@@ -149,8 +149,10 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                                     SizedBox(
                                       width: 0.4.sw,
                                       child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           AppTextStyleOverFlow(
                                             text: orderProduct.strMeal!,
@@ -183,7 +185,8 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                                                 fontSize: 12.sp,
                                               ),
                                               AppTextStyle(
-                                                text: '${orderProduct.idMeal} Tk',
+                                                text:
+                                                    '${orderProduct.idMeal} Tk',
                                                 fontSize: 13.sp,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -224,8 +227,7 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                             ),
                             10.width,
                             AppTextStyle(
-                              text:
-                              'Payment Methods',
+                              text: 'Payment Methods',
                               fontWeight: FontWeight.w600,
                               fontSize: 16.sp,
                             ),
@@ -242,16 +244,41 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                           itemCount: 2,
                           itemBuilder: (context, index) {
                             final Meal orderProduct =
-                            Get.find<HomeController>().canadianMeals[index];
+                                Get.find<HomeController>().canadianMeals[index];
                             return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child:ListTile(
-                                  leading: circularImage(
-                                      imgUrl: "https://www.citybankplc.com/newsevent/1626346970.jpg",
-                                      radius: 15.r, imgRadius: 15.r),
-                                  title: const AppTextStyle(text: 'City Bank',),
-                                  trailing: AppTextStyle(text: '${HelperUtils.currencySymbol} ${50000}'),
-                                )
+                              padding: EdgeInsets.symmetric(horizontal: 8.w),
+                              child: ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                visualDensity:
+                                    const VisualDensity(vertical: -4),
+                                leading: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black12,
+                                            blurRadius: 1.r,
+                                            offset: Offset(2.w, 2.h))
+                                      ]),
+                                  child: circularImage(
+                                      imgUrl:
+                                          "https://www.citybankplc.com/newsevent/1626346970.jpg",
+                                      radius: 15.r,
+                                      imgRadius: 15.r),
+                                ),
+                                title: AppTextStyle(
+                                  text: 'City Bank',
+                                  fontSize: 14.sp,
+                                  textAlign: TextAlign.start,
+                                ),
+                                trailing: AppTextStyle(
+                                  text:
+                                      '${HelperUtils.currencySymbol} ${50000}',
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
                             );
                           },
                         ),
@@ -388,15 +415,18 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                       10.height,
                       summaryOptionsRow(
                           leadingText: '${'Subtotal'.tr} (2 items)',
-                          thrillingText: '${HelperUtils.currencySymbol} ${50000}'),
+                          thrillingText:
+                              '${HelperUtils.currencySymbol} ${50000}'),
                       5.height,
                       summaryOptionsRow(
                           leadingText: 'Shipping Charge',
-                          thrillingText: '+${HelperUtils.currencySymbol} ${600}'),
+                          thrillingText:
+                              '+${HelperUtils.currencySymbol} ${600}'),
                       5.height,
                       summaryOptionsRow(
                           leadingText: 'Discount',
-                          thrillingText: '-${HelperUtils.currencySymbol} ${5000}'),
+                          thrillingText:
+                              '-${HelperUtils.currencySymbol} ${5000}'),
                       5.height,
                       summaryOptionsRow(
                           leadingText: 'Tax',
@@ -409,11 +439,13 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                       customDivider(),
                       5.height,
                       Obx(() {
+                        final test = controller.isSelect.value;
                         return summaryOptionsRow(
                           leadingText: 'Total',
                           fontSizeLeadingText: 15.sp,
                           fontWeightLeadingText: FontWeight.w500,
-                          thrillingText:'${HelperUtils.currencySymbol} ${50000+600+5000}',
+                          thrillingText:
+                              '${HelperUtils.currencySymbol} ${50000 + 600 + 5000}',
                           //     '${HelperUtils.currencySymbol} ${controller.totalSum(
                           //   "50000",
                           //   '600',
@@ -471,8 +503,9 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                       //         .myOrder.createdAt!.toString())),
                       summaryOptionsRow(
                         leadingText: 'Purchase Time',
-                        thrillingText: DateTimeUtils.parseTime(
-                            '2024-09-09T08:16:13.950Z'),),
+                        thrillingText:
+                            DateTimeUtils.parseTime('2024-09-09T08:16:13.950Z'),
+                      ),
                       5.height,
                       Obx(() {
                         return summaryOptionsRow(
@@ -484,33 +517,38 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                                   controller.isSelect.value = false;
                                 } else {
                                   controller.isSelect.value = true;
-                                  const String textToCopy =
-                                  "w5oiuy45234h4h5";
+                                  const String textToCopy = "w5oiuy45234h4h5";
                                   if (textToCopy.isNotEmpty) {
                                     try {
                                       await Clipboard.setData(
-                                          const ClipboardData(text: textToCopy));
-                                      ScaffoldMessenger.of(context).showSnackBar(
+                                          const ClipboardData(
+                                              text: textToCopy));
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
                                         SnackBar(
                                           content: const AppTextStyle(
                                               text: 'Copied to Clipboard!'),
                                           backgroundColor:
-                                          ColorName.white.withOpacity(0.5),
-                                          duration: const Duration(microseconds: 200),
+                                              ColorName.white.withOpacity(0.5),
+                                          duration:
+                                              const Duration(microseconds: 200),
                                         ),
                                       );
                                     } catch (e) {
-                                      ScaffoldMessenger.of(context).showSnackBar(
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
                                         const SnackBar(
-                                            content:
-                                            Text('Failed to copy to clipboard.')),
+                                            content: Text(
+                                                'Failed to copy to clipboard.')),
                                       );
                                     }
                                   }
                                 }
                               },
                               child: Icon(
-                                controller.isSelect.value ? Icons.check : Icons.copy,
+                                controller.isSelect.value
+                                    ? Icons.check
+                                    : Icons.copy,
                                 size: 18,
                               ),
                             ));

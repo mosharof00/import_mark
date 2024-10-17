@@ -84,6 +84,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/cross_icon.svg
   String get crossIcon => 'assets/icons/cross_icon.svg';
 
+  /// File path: assets/icons/currency_symbol.svg
+  String get currencySymbol => 'assets/icons/currency_symbol.svg';
+
   /// File path: assets/icons/discount_fill_icon.svg
   String get discountFillIcon => 'assets/icons/discount_fill_icon.svg';
 
@@ -274,6 +277,7 @@ class $AssetsIconsGen {
         congratsLeftIcon,
         congratsRightIcon,
         crossIcon,
+        currencySymbol,
         discountFillIcon,
         editIcon,
         emailIcon,
@@ -422,8 +426,8 @@ class $AssetsImagesGen {
   AssetGenImage get lockAnimationIcon =>
       const AssetGenImage('assets/images/lock_animation_icon.gif');
 
-  /// File path: assets/images/logo.png
-  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+  /// File path: assets/images/logo .png
+  AssetGenImage get logo => const AssetGenImage('assets/images/logo .png');
 
   /// File path: assets/images/logout.svg
   String get logout => 'assets/images/logout.svg';

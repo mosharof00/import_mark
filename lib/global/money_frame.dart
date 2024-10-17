@@ -21,10 +21,10 @@ Widget moneyFrame({
     mainAxisSize: MainAxisSize.min,
     children: [
       customSvgImage(
-          imagePath: imagePath ?? Assets.icons.crossIcon,
+          imagePath: imagePath ?? Assets.icons.currencySymbol,
           // Assets.icons.dollarIcon,
-          height: iconHeight ?? 12.h,
-          width: iconWidth ?? 12.w,
+          height: iconHeight ?? 13.h,
+          width: iconWidth ?? 13.w,
           color: iconColor ?? ColorName.black),
       5.width,
       AppTextStyle(

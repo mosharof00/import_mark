@@ -204,8 +204,7 @@ class OrderInfoView extends GetView<OrderInfoController> {
                                         containerColor:
                                             OrderStatusColor.getColor(
                                                 controller.newStatus.value),
-                                        containerHeight: 35.h,
-                                        containerWidth: 150.w,
+
                                         fontSize: 14.sp,
                                       ),
                                     ),
