@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -75,18 +76,18 @@ class LoginView extends GetView<LoginController> {
                     hintText: 'Email',
                   ),
                   Obx(() => Visibility(
-                    visible: controller.emailError.isNotEmpty,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: AppTextStyle(
-                        textAlign: TextAlign.start,
-                        text: controller.emailError.value,
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w400,
-                        color: ColorName.crimsonRed,
-                      ),
-                    ),
-                  )),
+                        visible: controller.emailError.isNotEmpty,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: AppTextStyle(
+                            textAlign: TextAlign.start,
+                            text: controller.emailError.value,
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.w400,
+                            color: ColorName.crimsonRed,
+                          ),
+                        ),
+                      )),
                   15.height,
                   Align(
                     alignment: Alignment.centerLeft,
@@ -98,7 +99,7 @@ class LoginView extends GetView<LoginController> {
                   ),
                   5.height,
                   Obx(
-                        () => AppInputTextFormField(
+                    () => AppInputTextFormField(
                       controller: controller.passEditingController,
                       maxLines: 1,
                       obscureText: controller.hidePassword.value,
@@ -109,40 +110,40 @@ class LoginView extends GetView<LoginController> {
                       ),
                       suffixIcon: controller.hidePassword.value
                           ? InkWell(
-                        onTap: () {
-                          controller.hidePassword.value = false;
-                        },
-                        child: SvgPicture.asset(
-                          Assets.icons.inVisibleEyeIcon,
-                          width: 10.w,
-                          height: 10.h,
-                        ),
-                      )
+                              onTap: () {
+                                controller.hidePassword.value = false;
+                              },
+                              child: SvgPicture.asset(
+                                Assets.icons.inVisibleEyeIcon,
+                                width: 10.w,
+                                height: 10.h,
+                              ),
+                            )
                           : InkWell(
-                        onTap: () {
-                          controller.hidePassword.value = true;
-                        },
-                        child: SvgPicture.asset(
-                          Assets.icons.visibleEyeIcon,
-                          width: 10.w,
-                          height: 10.h,
-                        ),
-                      ),
+                              onTap: () {
+                                controller.hidePassword.value = true;
+                              },
+                              child: SvgPicture.asset(
+                                Assets.icons.visibleEyeIcon,
+                                width: 10.w,
+                                height: 10.h,
+                              ),
+                            ),
                       hintText: 'Password',
                     ),
                   ),
                   Obx(() => Visibility(
-                    visible: controller.passwordError.isNotEmpty,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: AppTextStyle(
-                        text: controller.passwordError.value,
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w400,
-                        color: ColorName.crimsonRed,
-                      ),
-                    ),
-                  )),
+                        visible: controller.passwordError.isNotEmpty,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: AppTextStyle(
+                            text: controller.passwordError.value,
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.w400,
+                            color: ColorName.crimsonRed,
+                          ),
+                        ),
+                      )),
                   10.height,
                   Row(
                     children: [
@@ -189,19 +190,37 @@ class LoginView extends GetView<LoginController> {
                   // ),
                   30.height,
                   loadingButton(
-                      onTap: () {
-                        if (controller.validateInputs()) {
-                          // controller.loginUser(
-                          //   email: controller.emailEditingController.text,
-                          //   password: controller.passEditingController.text,
-                          // );
-                          Get.offNamed(Routes.MAIN_PAGE);
-                        } else {
-                          controller.btnController.stop();
-                        }
-                      },
-                      controller: controller.btnController,
-                      text: "Login"),
+                    onTap: () {
+                      if (controller.validateInputs()) {
+                        // controller.loginUser(
+                        //   email: controller.emailEditingController.text,
+                        //   password: controller.passEditingController.text,
+                        // );
+                        Get.offNamed(Routes.MAIN_PAGE);
+                      } else {
+                        controller.btnController.stop();
+                      }
+                    },
+                    controller: controller.btnController,
+                    text: "Login",
+                  ),
+                  20.height,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      AppTextStyle(text: "Don't have an account?"),
+                      CupertinoButton(
+                        onPressed: () {
+                          Get.toNamed(Routes.REGISTER);
+                        },
+                        child: AppTextStyle(
+                          text: "Sign up",
+                          color: ColorName.primaryColor,
+                          fontSize: 14.sp,
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),

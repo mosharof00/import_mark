@@ -1,14 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:import_mark/helper/helper_utils.dart';
 import 'package:rounded_loading_button_plus/rounded_loading_button.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LoginController extends GetxController {
   //TODO: Implement LoginController
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   // Loading button
   RoundedLoadingButtonController btnController =
       RoundedLoadingButtonController();
-  final FirebaseAuth auth = FirebaseAuth.instance;
   // Is remember me
   RxBool boxCheck = true.obs;
   // Password visibility
@@ -18,6 +21,39 @@ class LoginController extends GetxController {
   TextEditingController passEditingController = TextEditingController();
   var emailError = ''.obs;
   var passwordError = ''.obs;
+
+  // Sign in method with name fetching
+  Future<void> signIn(String email, String password) async {
+    try {
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      User? user = result.user;
+
+      if (user != null) {
+        DocumentSnapshot userDoc =
+            await _firestore.collection('users').doc(user.uid).get();
+
+        String role = userDoc['role'];
+        String name = userDoc['name'];
+        // userName.value = name; // Store the user's name for use in the app
+
+        // if (role == 'admin') {
+        //   isAdmin.value = true;
+        // } else {
+        //   isAdmin.value = false;
+        // }
+
+        // Update push notification token if needed
+        // String? token = await _firebaseMessaging.getToken();
+        await _firestore.collection('users').doc(user.uid).update({
+          'deviceToken': HelperUtils
+              .firebaseToken, // Update the push token if it's changed
+        });
+      }
+    } catch (e) {
+      print("Error signing in: $e");
+    }
+  }
 
   bool validateInputs() {
     bool isValid = true;
