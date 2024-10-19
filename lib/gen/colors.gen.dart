@@ -94,6 +94,9 @@ class ColorName {
   /// Color: #F8F9C7
   static const Color start = Color(0xFFF8F9C7);
 
+  /// Color: #ff758f
+  static const Color textFieldErrorColor = Color(0xFFFF758F);
+
   /// Color: #FFFFFF
   static const Color white = Color(0xFFFFFFFF);
 

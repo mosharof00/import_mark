@@ -10,6 +10,7 @@ import '../../../../gen/assets.gen.dart';
 import '../../../../gen/colors.gen.dart';
 import '../../../../global/bottom_sheets/log_out_bottom_sheet.dart';
 import '../../../../global/label_text.dart';
+import '../../../../helper/helper_utils.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/profile_controller.dart';
 import '../widgets/profile_option.dart';
@@ -22,10 +23,10 @@ class ProfileView extends GetView<ProfileController> {
     final String imageURL;
     if (controller.isAdmin.value) {
       imageURL =
-      'https://i.pinimg.com/736x/8d/de/f6/8ddef6e048aa4fbd04f7949103ffc943.jpg';
+          'https://i.pinimg.com/736x/8d/de/f6/8ddef6e048aa4fbd04f7949103ffc943.jpg';
     } else {
       imageURL =
-      "https://www.photodoozy.com/uploads/thumbs/mehmet-s-rainy-day-hyperrealistic-3d-ai-profile-picture-with-cute-cat-and-lovely-after-rain-vibes-photodoozy.jpg";
+          "https://www.photodoozy.com/uploads/thumbs/mehmet-s-rainy-day-hyperrealistic-3d-ai-profile-picture-with-cute-cat-and-lovely-after-rain-vibes-photodoozy.jpg";
     }
     return Scaffold(
       backgroundColor: ColorName.bgColor,
@@ -33,7 +34,7 @@ class ProfileView extends GetView<ProfileController> {
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
         automaticallyImplyLeading:
-        controller.isFromNaveBar.value ? false : true,
+            controller.isFromNaveBar.value ? false : true,
       ),
       body: Column(
         children: [
@@ -99,7 +100,7 @@ class ProfileView extends GetView<ProfileController> {
                     ]),
                 child: Padding(
                   padding:
-                  EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
+                      EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
@@ -153,9 +154,7 @@ class ProfileView extends GetView<ProfileController> {
                         profileOptions(
                             onTap: () {
                               LogOutBottomSheet.show(context, () {
-                                // if (Get.find<LoginController>().users == null) {
-                                //   Get.find<LoginController>().auth.signOut();
-                                // }
+                                HelperUtils.clearUser();
                                 Get.offAllNamed(Routes.LOGIN);
                               }, () {
                                 Get.back();
@@ -163,7 +162,8 @@ class ProfileView extends GetView<ProfileController> {
                             },
                             text: 'Sign Out',
                             icon: Assets.images.logoutIcon,
-                            iconColor: ColorName.crimsonRed),
+                            iconColor: ColorName.crimsonRed,
+                            textColor: ColorName.crimsonRed),
                         10.height
                       ],
                     ),

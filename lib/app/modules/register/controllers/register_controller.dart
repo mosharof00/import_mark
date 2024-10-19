@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:import_mark/app/routes/app_pages.dart';
+import 'package:import_mark/global/log_printer.dart';
+import 'package:import_mark/helper/config.dart';
 import 'package:import_mark/helper/helper_utils.dart';
 import 'package:rounded_loading_button_plus/rounded_loading_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,79 +13,65 @@ class RegisterController extends GetxController {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
+  // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance; //
+  Rx<User?> firebaseUser = Rx<User?>(null);
   RoundedLoadingButtonController btnController =
       RoundedLoadingButtonController();
+  RxBool isAgree = false.obs;
+  RxBool hidePassword = true.obs;
+  RxBool hideConfirmPassword = true.obs;
+
   // Is remember me
   RxBool boxCheck = true.obs;
-  // Password visibility
-  RxBool hidePassword = true.obs;
+
+  /// Password visibility
   // Text Field Controller
-  TextEditingController emailEditingController = TextEditingController();
-  TextEditingController passEditingController = TextEditingController();
-  var emailError = ''.obs;
-  var passwordError = ''.obs;
+  final nameEditingController = TextEditingController();
+  final emailEditingController = TextEditingController();
+  final passwordEditingController = TextEditingController();
+  final confirmPasswordEditingController = TextEditingController();
 
   // Sign up method (with name and notification token)
-  Future<void> signUp(
-      String email, String password, String name, String role) async {
+  Future<void> signUp() async {
+    Log.i(
+        "name: ${nameEditingController.text}\n email : ${emailEditingController.text} \n token: ${HelperUtils.firebaseToken}");
     try {
+      btnController.start();
       UserCredential result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+          email: emailEditingController.text,
+          password: passwordEditingController.text);
       User? user = result.user;
 
       if (user != null) {
         // Get the push notification token
         // String? token = await _firebaseMessaging.getToken();
-
         await _firestore.collection('users').doc(user.uid).set({
           'uid': user.uid,
-          'email': email,
-          'name': name, // Store user's name
-          'role': role, // 'admin' or 'user'
+          'email': emailEditingController.text,
+          'name': nameEditingController.text, // Store user's name
+          'role': HelperUtils.user, // 'admin' or 'user'
           'deviceToken':
               HelperUtils.firebaseToken, // Store push notification token
         });
-
-        // if (role == 'admin') {
-        //   isAdmin.value = true;
-        // }
-
-        // userName.value = name; // Update the user's name in the app
+        DocumentSnapshot userDoc =
+            await _firestore.collection('users').doc(user.uid).get();
+        HelperUtils.setUser(
+            userId: user.uid,
+            role: userDoc['role'],
+            token: userDoc['deviceToken']);
+        Get.offAllNamed(Routes.MAIN_PAGE);
+        btnController.stop();
       }
     } catch (e) {
-      print("Error signing up: $e");
+      Log.e("Error signing up: $e");
+      btnController.stop();
     }
-  }
-
-  bool validateInputs() {
-    bool isValid = true;
-    if (emailEditingController.text.isEmpty) {
-      emailError.value = '* Required';
-      isValid = false;
-    } else if (!GetUtils.isEmail(emailEditingController.text)) {
-      emailError.value = 'Enter a valid email';
-      isValid = false;
-    } else {
-      emailError.value = '';
-    }
-    if (passEditingController.text.isEmpty) {
-      passwordError.value = '* Required';
-      isValid = false;
-    } else {
-      passwordError.value = '';
-    }
-    return isValid;
   }
 
   @override
   void onInit() {
+    firebaseUser.bindStream(_auth.authStateChanges());
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
   }
 
   @override
