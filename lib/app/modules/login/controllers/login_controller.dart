@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:import_mark/app/routes/app_pages.dart';
+import 'package:import_mark/global/global_snackbar.dart';
+import 'package:import_mark/global/log_printer.dart';
 import 'package:import_mark/helper/helper_utils.dart';
 import 'package:rounded_loading_button_plus/rounded_loading_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,8 +26,9 @@ class LoginController extends GetxController {
   var passwordError = ''.obs;
 
   // Sign in method with name fetching
-  Future<void> signIn(String email, String password) async {
+  Future<void> signIn({required String email, required String password}) async {
     try {
+      btnController.start();
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
@@ -32,26 +36,35 @@ class LoginController extends GetxController {
       if (user != null) {
         DocumentSnapshot userDoc =
             await _firestore.collection('users').doc(user.uid).get();
-
-        String role = userDoc['role'];
-        String name = userDoc['name'];
-        // userName.value = name; // Store the user's name for use in the app
-
-        // if (role == 'admin') {
-        //   isAdmin.value = true;
-        // } else {
-        //   isAdmin.value = false;
-        // }
-
-        // Update push notification token if needed
-        // String? token = await _firebaseMessaging.getToken();
         await _firestore.collection('users').doc(user.uid).update({
           'deviceToken': HelperUtils
               .firebaseToken, // Update the push token if it's changed
         });
+        String role = userDoc['role'];
+        String deviceToken = userDoc['deviceToken'];
+
+        if (role == HelperUtils.admin) {
+          await HelperUtils.setUser(
+              userId: user.uid, role: role, token: deviceToken);
+          Get.offAllNamed(Routes.ADMIN_MAIN_PAGE);
+        } else if (role == HelperUtils.user) {
+          await HelperUtils.setUser(
+              userId: user.uid, role: role, token: deviceToken);
+          Get.offAllNamed(Routes.MAIN_PAGE);
+        }
+        globalSnackBar(
+            title: "Success!",
+            message: 'Login successfully.',
+            durationInSeconds: 2);
       }
+      globalSnackBar(
+          title: "Unsuccessful!",
+          message: 'Something went wrong. please try grain later.',
+          durationInSeconds: 2);
+      btnController.stop();
     } catch (e) {
-      print("Error signing in: $e");
+      Log.e("Error signing in: $e");
+      btnController.stop();
     }
   }
 

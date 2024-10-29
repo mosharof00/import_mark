@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:import_mark/global/global_snackbar.dart';
 import 'package:import_mark/global/sizedbox_extension.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/colors.gen.dart';
@@ -36,33 +37,30 @@ class LoginView extends GetView<LoginController> {
           child: Center(
             child: SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    Assets.images.logo.path,
-                    height: 150.h,
-                    width: 150.w,
-                  ),
-                  50.height,
                   Align(
-                    alignment: Alignment.centerLeft,
-                    child: AppTextStyle(
-                      text: 'Welcome \nBack!',
-                      fontSize: 30.sp,
-                      fontWeight: FontWeight.w700,
-                      textAlign: TextAlign.start,
+                    alignment: Alignment.topCenter,
+                    child: Image.asset(
+                      Assets.images.logo.path,
+                      height: 150.h,
+                      width: 150.w,
                     ),
                   ),
                   30.height,
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: AppTextStyle(
-                      text: 'Email',
-                      textAlign: TextAlign.start,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  AppTextStyle(
+                    text: 'Welcome \nBack!',
+                    fontSize: 30.sp,
+                    fontWeight: FontWeight.w700,
+                    textAlign: TextAlign.start,
+                  ),
+                  30.height,
+                  AppTextStyle(
+                    text: 'Email',
+                    textAlign: TextAlign.start,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
                   ),
                   5.height,
                   AppInputTextFormField(
@@ -190,33 +188,34 @@ class LoginView extends GetView<LoginController> {
                   // ),
                   30.height,
                   loadingButton(
+                    controller: controller.btnController,
                     onTap: () {
                       if (controller.validateInputs()) {
-                        // controller.loginUser(
-                        //   email: controller.emailEditingController.text,
-                        //   password: controller.passEditingController.text,
-                        // );
-                        Get.offNamed(Routes.MAIN_PAGE);
+                        controller.signIn(
+                          email: controller.emailEditingController.text,
+                          password: controller.passEditingController.text,
+                        );
                       } else {
                         controller.btnController.stop();
                       }
                     },
-                    controller: controller.btnController,
                     text: "Login",
                   ),
                   20.height,
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      AppTextStyle(text: "Don't have an account?"),
+                      const AppTextStyle(text: "Don't have an account?"),
                       CupertinoButton(
                         onPressed: () {
                           Get.toNamed(Routes.REGISTER);
                         },
                         child: AppTextStyle(
-                          text: "Sign up",
+                          text: "Sign Up",
                           color: ColorName.primaryColor,
-                          fontSize: 14.sp,
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ],

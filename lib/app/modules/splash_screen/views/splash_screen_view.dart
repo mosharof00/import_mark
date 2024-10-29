@@ -12,7 +12,7 @@ class SplashScreenView extends GetView<SplashScreenController> {
   const SplashScreenView({super.key});
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(SplashScreenController());
+   Get.put(SplashScreenController());
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorName.bgColor,

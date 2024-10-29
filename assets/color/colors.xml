@@ -16,6 +16,7 @@
     <color name="bgColor">#F7F8FC</color>
     <color name="bgColorWhite">#ECECEC</color>
     <color name="wrong_ans">#F65B51</color>
+    <color name="textFieldErrorColor">#ff758f</color>
 
     <color name="start">#F8F9C7</color>
     <color name="end">#F2C1EA</color>

@@ -6,13 +6,13 @@ import 'app_text_style.dart';
 
 SnackbarController globalSnackBar(
     {required String title,
-    required String message,
-    String? svgImagePath,
-    int? durationInSeconds,
-    double? iconHeight,
-    Color? iconColor,
-    Color? backgroundColor,
-    SnackPosition? snackPosition}) {
+      required String message,
+      String? svgImagePath,
+      int? durationInSeconds,
+      double? iconHeight,
+      Color? iconColor,
+      Color? backgroundColor,
+      SnackPosition? snackPosition}) {
   return Get.snackbar(
     '',
     '',
