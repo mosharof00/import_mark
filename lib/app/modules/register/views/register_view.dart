@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:import_mark/app/modules/login/widgets/login_UI_helper.dart';
-
 import '../../../../global/global_snackbar.dart';
 import '../../../../global/label_text.dart';
-import '../../../../global/log_printer.dart';
-import '../../../../helper/config.dart';
 import '../controllers/register_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -150,7 +147,11 @@ class RegisterView extends GetView<RegisterController> {
                       onTap: () {
                         if (formKey.currentState!.validate()) {
                           if (controller.isAgree.value) {
-                            controller.signUp();
+                            controller.signUp(
+                              name: controller.nameEditingController.text,
+                              email: controller.emailEditingController.text,
+                              password: controller.passwordEditingController.text,
+                            );
                           } else {
                             globalSnackBar(
                                 durationInSeconds: 2,
@@ -191,7 +192,23 @@ class RegisterView extends GetView<RegisterController> {
                       ),
                     ),
                   ],
-                )
+                ),
+                25.height,
+                orPart(),
+                25.height,
+                loadingButton(
+                  onTap: () {
+                    // controller.signInWithGoogle();
+                  },
+                  controller: controller.btnController,
+                  color: ColorName.white,
+                  fontColor: Colors.black,
+                  valueColor: ColorName.primaryColor,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                  isImage: true,
+                  text: 'Continue with Google',
+                ),
               ],
             ),
           ),
