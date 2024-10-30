@@ -32,6 +32,10 @@ import '../modules/cart/bindings/cart_binding.dart';
 import '../modules/cart/views/cart_view.dart';
 import '../modules/checkout/bindings/checkout_binding.dart';
 import '../modules/checkout/views/checkout_view.dart';
+import '../modules/delivery_address/add_delivery_address/bindings/add_delivary_address_binding.dart';
+import '../modules/delivery_address/add_delivery_address/views/add_delivary_address_view.dart';
+import '../modules/delivery_address/bindings/delivery_address_binding.dart';
+import '../modules/delivery_address/views/delivery_address_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -239,6 +243,18 @@ class AppPages {
       name: _Paths.PAYMENT_METHODS,
       page: () => const PaymentMethodsView(),
       binding: PaymentMethodsBinding(),
+    ),
+    GetPage(
+      name: _Paths.DELIVERY_ADDRESS,
+      page: () => const DeliveryAddressView(),
+      binding: DeliveryAddressBinding(),
+      children: [
+        GetPage(
+          name: _Paths.ADD_DELIVARY_ADDRESS,
+          page: () => const AddDeliveryAddressView(),
+          binding: AddDeliveryAddressBinding(),
+        ),
+      ],
     ),
   ];
 }

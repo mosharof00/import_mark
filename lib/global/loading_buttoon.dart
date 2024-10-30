@@ -30,7 +30,7 @@ Widget loadingButton({
     height: height ?? 45.h,
     width: width ?? Get.width,
     controller: controller,
-    valueColor: valueColor ?? Colors.black,
+    valueColor: valueColor ?? Colors.white,
     color: color ?? ColorName.primaryColor,
     onPressed: onTap,
     borderRadius: borderRadius ?? 50.r,
