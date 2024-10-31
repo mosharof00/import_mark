@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:import_mark/global/global_snackbar.dart';
+import 'package:import_mark/app/modules/register/controllers/register_controller.dart';
 import 'package:import_mark/global/sizedbox_extension.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/colors.gen.dart';
@@ -19,7 +19,6 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     Get.put(LoginController);
-    // final formKey = GlobalKey<FormState>();
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: true,
@@ -219,7 +218,24 @@ class LoginView extends GetView<LoginController> {
                         ),
                       ),
                     ],
-                  )
+                  ),
+                  25.height,
+                  orPart(),
+                  25.height,
+                  loadingButton(
+                    onTap: () {
+                      controller.signInWithGoogle();
+                    },
+                    controller: controller.btnController,
+                    color: ColorName.white,
+                    fontColor: Colors.black,
+                    valueColor: ColorName.primaryColor,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    isImage: true,
+                    text: 'Continue with Google',
+                  ),
+                  50.height,
                 ],
               ),
             ),

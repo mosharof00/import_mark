@@ -198,7 +198,7 @@ class RegisterView extends GetView<RegisterController> {
                 25.height,
                 loadingButton(
                   onTap: () {
-                    // controller.signInWithGoogle();
+                    controller.signInWithGoogle();
                   },
                   controller: controller.btnController,
                   color: ColorName.white,
@@ -209,6 +209,7 @@ class RegisterView extends GetView<RegisterController> {
                   isImage: true,
                   text: 'Continue with Google',
                 ),
+                50.height,
               ],
             ),
           ),

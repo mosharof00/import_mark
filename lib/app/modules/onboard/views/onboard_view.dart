@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:import_mark/helper/hive_service.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 import '../../../../gen/assets.gen.dart';
@@ -160,9 +161,11 @@ class OnboardView extends GetView<OnboardController> {
           // ),
         ],
         onDone: () {
+          HiveService.setOnBoardShowed(true);
           Get.toNamed(Routes.LOGIN);
         },
         onSkip: () {
+          HiveService.setOnBoardShowed(true);
           Get.toNamed(Routes.LOGIN);
         },
         showSkipButton: true,
