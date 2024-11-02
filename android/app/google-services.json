@@ -1,8 +1,9 @@
 {
   "project_info": {
     "project_number": "191554436392",
+    "firebase_url": "https://import-mark-default-rtdb.firebaseio.com",
     "project_id": "import-mark",
-    "storage_bucket": "import-mark.appspot.com"
+    "storage_bucket": "import-mark.firebasestorage.app"
   },
   "client": [
     {

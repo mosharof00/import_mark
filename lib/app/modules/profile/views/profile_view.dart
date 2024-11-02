@@ -154,8 +154,7 @@ class ProfileView extends GetView<ProfileController> {
                         profileOptions(
                             onTap: () {
                               LogOutBottomSheet.show(context, () {
-                                HelperUtils.clearUser();
-                                Get.offAllNamed(Routes.LOGIN);
+                                controller.logout();
                               }, () {
                                 Get.back();
                               });

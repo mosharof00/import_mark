@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:import_mark/app/routes/app_pages.dart';
@@ -74,102 +73,90 @@ class RegisterController extends GetxController {
     }
   }
 
-  /// Google Sign In
+  /// Google Sign Up
   final FirebaseAuth auth =
       FirebaseAuth.instance; // Initialize Firebase Auth instance
   final Rx<User?> user = Rx<User?>(null); // Reactive user variable
   final GoogleSignIn googleSignIn = GoogleSignIn(); // Initialize Google Sign-In
 
-  Future<void> signInWithGoogle() async {
+  Future<void> signUpOrInWithGoogle() async {
     try {
       btnController.start();
       final GoogleSignInAccount? googleSignInAccount =
-          await googleSignIn.signIn(); // Start Google sign-in flow
+          await googleSignIn.signIn();
       if (googleSignInAccount == null) {
         btnController.stop();
         globalSnackBar(
           title: "Google Sign-In Cancelled",
           message: "You did not select an account.",
         );
-        return; // Handle case where user cancels sign-in
+        return;
       }
+
       final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount
-              .authentication; // Get Google authentication tokens
+          await googleSignInAccount.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuthentication.accessToken,
         idToken: googleSignInAuthentication.idToken,
-      ); // Create credential using tokens
-      final UserCredential userCredential = await auth.signInWithCredential(
-          credential); // Sign in to Firebase with Google credentialse
-      user.value = userCredential.user; // Update reactive user variable
+      );
+
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+      user.value = userCredential.user;
+
       if (user.value != null) {
-        final String? email = user.value!.email; // Get user email
-        // Retrieve UserInfo from providerData
+        final String? email = user.value!.email;
         final UserInfo? userInfo = user.value!.providerData.isNotEmpty
-            ? user.value!.providerData[0] // Access the first UserInfo
+            ? user.value!.providerData[0]
             : null;
-        final String name = userInfo!.displayName!; // Get display name
-        final String password = user.value!.uid; // Use UID as password
+        final String name =
+            userInfo?.displayName ?? 'No Name'; // Use a default if name is null
+        final String password = user.value!.uid;
 
-        ///   set  user into firebase
-        try {
-          UserCredential result = await _auth.createUserWithEmailAndPassword(
-              email: email!, password: password);
-          User? user = result.user;
+        // Check if the user already exists in Firestore
+        DocumentSnapshot userDoc =
+            await _firestore.collection('users').doc(user.value!.uid).get();
+        if (!userDoc.exists) {
+          await _firestore.collection('users').doc(user.value!.uid).set({
+            'id': user.value!.uid,
+            'email': email,
+            'name': name,
+            'role': HelperUtils.admin,
+            'deviceToken': HelperUtils.firebaseToken,
+            'password': password,
+          });
+        }
 
-          if (user != null) {
-            // Get the push notification token
-            // String? token = await _firebaseMessaging.getToken();
-            await _firestore.collection('users').doc(user.uid).set({
-              'id': user.uid,
-              'email': email,
-              'name': name, // Store user's name
-              'role': HelperUtils.admin, // 'admin' or 'user'
-              'deviceToken':
-                  HelperUtils.firebaseToken, // Store push notification token
-              'password': password,
-            });
-            DocumentSnapshot userDoc =
-                await _firestore.collection('users').doc(user.uid).get();
-            HelperUtils.setUser(
-                userId: user.uid,
-                role: userDoc['role'],
-                token: userDoc['deviceToken']);
-            btnController.stop();
-            if (userDoc['role'] == HelperUtils.admin) {
-              Get.offAllNamed(Routes.ADMIN_MAIN_PAGE);
-            } else {
-              Get.offAllNamed(Routes.MAIN_PAGE);
-            }
-          }
-        } on FirebaseAuthException catch (e) {
-          Log.e("Error signing up: $e");
-          globalSnackBar(title: "Error!", message: e.toString());
-          btnController.stop();
+        // Use a more meaningful navigation based on user role
+        if (userDoc.exists && userDoc['role'] == HelperUtils.admin) {
+          HelperUtils.setUser(
+              userId: user.value!.uid,
+              role: userDoc['role'],
+              token: userDoc['deviceToken']);
+          Get.offAllNamed(Routes.ADMIN_MAIN_PAGE);
+        } else {
+          HelperUtils.setUser(
+              userId: user.value!.uid,
+              role: userDoc['role'],
+              token: userDoc['deviceToken']);
+          Get.offAllNamed(Routes.MAIN_PAGE);
         }
       } else {
-        await auth.signOut(); // Sign out if user is null
+        await _auth.signOut();
         user.value = null; // Reset user variable
       }
       btnController.stop();
     } catch (e) {
       Log.e(e);
-      if (e is PlatformException) {
-        if (e.code == 'sign_in_failed') {
-          Log.w('Sign in failed: ${e.message}');
-        } else {
-          Log.w('Error: ${e.message}');
-        }
-      } else {
-        Log.w('Error: ${e.toString()}');
-      }
+      // Provide user feedback here if necessary
+      globalSnackBar(title: "Error!", message: e.toString(),durationInSeconds: 2);
       btnController.stop();
     }
   }
 
   @override
   void onInit() {
+    btnController;
     firebaseUser.bindStream(_auth.authStateChanges());
     super.onInit();
   }

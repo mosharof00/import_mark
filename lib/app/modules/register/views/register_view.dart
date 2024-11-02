@@ -85,7 +85,7 @@ class RegisterView extends GetView<RegisterController> {
                   errorBorderColor: ColorName.textFieldErrorColor,
                   obscureText: false,
                   keyboardType: TextInputType.emailAddress,
-                  autoValidateMode: AutovalidateMode.disabled,
+                  autoValidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
                     if (value == null ||
                         value.isEmpty ||
@@ -150,15 +150,18 @@ class RegisterView extends GetView<RegisterController> {
                             controller.signUp(
                               name: controller.nameEditingController.text,
                               email: controller.emailEditingController.text,
-                              password: controller.passwordEditingController.text,
+                              password:
+                                  controller.passwordEditingController.text,
                             );
                           } else {
+                            controller.btnController.stop();
                             globalSnackBar(
                                 durationInSeconds: 2,
                                 title: 'Message',
                                 message: 'Please Agree to Terms & Condition');
                           }
                         } else {
+                          controller.btnController.stop();
                           globalSnackBar(
                             title: 'Message',
                             message: 'Please enter all required feeds',
@@ -173,7 +176,6 @@ class RegisterView extends GetView<RegisterController> {
                           ? ColorName.primaryColor
                           : ColorName.gray410);
                 }),
-
                 10.height,
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -197,18 +199,31 @@ class RegisterView extends GetView<RegisterController> {
                 orPart(),
                 25.height,
                 loadingButton(
-                  onTap: () {
-                    controller.signInWithGoogle();
-                  },
-                  controller: controller.btnController,
-                  color: ColorName.white,
-                  fontColor: Colors.black,
-                  valueColor: ColorName.primaryColor,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w600,
-                  isImage: true,
-                  text: 'Continue with Google',
-                ),
+                    onTap: () {
+                      controller.signUpOrInWithGoogle();
+                    },
+                    controller: controller.btnController,
+                    valueColor: ColorName.primaryColor,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    text: 'Continue with Google',
+                    child: Row(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: AppTextStyle(
+                                text: 'Continue with Google',
+                                color: Colors.black,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )),
                 50.height,
               ],
             ),

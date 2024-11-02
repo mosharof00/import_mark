@@ -219,21 +219,36 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ],
                   ),
-                  25.height,
+                  15.height,
                   orPart(),
-                  25.height,
+                  15.height,
                   loadingButton(
                     onTap: () {
-                      controller.signInWithGoogle();
+                     final registerController = Get.put(RegisterController());
+                     registerController.signUpOrInWithGoogle();
                     },
                     controller: controller.btnController,
-                    color: ColorName.white,
-                    fontColor: Colors.black,
                     valueColor: ColorName.primaryColor,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
-                    isImage: true,
                     text: 'Continue with Google',
+                    child: Row(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: AppTextStyle(
+                                text: 'Continue with Google',
+                                color:  Colors.black,
+                                fontSize:  18.sp,
+                                fontWeight:  FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
                   ),
                   50.height,
                 ],
