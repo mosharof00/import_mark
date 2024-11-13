@@ -41,6 +41,8 @@ abstract class Routes {
   static const DELIVERY_ADDRESS = _Paths.DELIVERY_ADDRESS;
   static const ADD_DELIVARY_ADDRESS =
       _Paths.DELIVERY_ADDRESS + _Paths.ADD_DELIVARY_ADDRESS;
+  static const ADD_CATEGORY = _Paths.ADMIN + _Paths.ADD_CATEGORY;
+  static const CATEGORY = _Paths.CATEGORY;
 }
 
 abstract class _Paths {
@@ -78,4 +80,6 @@ abstract class _Paths {
   static const STOCK_DETAILS = '/stock-details';
   static const DELIVERY_ADDRESS = '/delivery-address';
   static const ADD_DELIVARY_ADDRESS = '/add-delivary-address';
+  static const ADD_CATEGORY = '/add-category';
+  static const CATEGORY = '/category';
 }

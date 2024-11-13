@@ -13,7 +13,6 @@ Widget loadingButton({
   required RoundedLoadingButtonController controller,
   required String text,
   Color? color,
-  Color? fontColor,
   Color? valueColor,
   double? height,
   double? blurRadius,
@@ -22,30 +21,24 @@ Widget loadingButton({
   FontWeight? fontWeight,
   double? borderRadius,
   LinearGradient? gradient,
-  String? image,
   Widget? child,
 }) {
   return RoundedLoadingButton(
     height: height ?? 45.h,
     width: width ?? Get.width,
     controller: controller,
-    valueColor: valueColor ?? Colors.black,
     color: color ?? ColorName.primaryColor,
+    valueColor:valueColor?? Colors.white ,
     onPressed: onTap,
     borderRadius: borderRadius ?? 50.r,
     child: child ??
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: AppTextStyle(
-                text: text,
-                color: fontColor ?? Colors.white,
-                fontSize: fontSize ?? 18.sp,
-                fontWeight: fontWeight ?? FontWeight.w600,
-              ),
-            ),
-          ],
+        Center(
+          child: AppTextStyle(
+            text: text,
+            color: Colors.white,
+            fontSize: fontSize ?? 18.sp,
+            fontWeight: fontWeight ?? FontWeight.w600,
+          ),
         ),
   );
 }

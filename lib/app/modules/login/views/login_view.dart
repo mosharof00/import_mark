@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:import_mark/app/modules/register/controllers/register_controller.dart';
+import 'package:import_mark/global/log_printer.dart';
 import 'package:import_mark/global/sizedbox_extension.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../gen/colors.gen.dart';
@@ -11,6 +12,7 @@ import '../../../../global/app_input_textformfield.dart';
 import '../../../../global/app_text_style.dart';
 import '../../../../global/loading_buttoon.dart';
 import '../../../routes/app_pages.dart';
+import '../../register/widgets/app_input_with_title.dart';
 import '../controllers/login_controller.dart';
 import '../widgets/login_UI_helper.dart';
 
@@ -18,6 +20,7 @@ class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
   @override
   Widget build(BuildContext context) {
+    final  formKey = GlobalKey<FormState>();
     Get.put(LoginController);
     return SafeArea(
       child: Scaffold(
@@ -35,223 +38,194 @@ class LoginView extends GetView<LoginController> {
           padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Center(
             child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Image.asset(
-                      Assets.images.logo.path,
-                      height: 150.h,
-                      width: 150.w,
+              child: Form(
+                key: formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Image.asset(
+                        Assets.images.logo.path,
+                        height: 150.h,
+                        width: 150.w,
+                      ),
                     ),
-                  ),
-                  30.height,
-                  AppTextStyle(
-                    text: 'Welcome \nBack!',
-                    fontSize: 30.sp,
-                    fontWeight: FontWeight.w700,
-                    textAlign: TextAlign.start,
-                  ),
-                  30.height,
-                  AppTextStyle(
-                    text: 'Email',
-                    textAlign: TextAlign.start,
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  5.height,
-                  AppInputTextFormField(
-                    // prefixIcon: Icon(Icons.person),
-                    controller: controller.emailEditingController,
-                    prefixIcon: SvgPicture.asset(
-                      Assets.icons.emailIcon,
-                      width: 12.w,
-                      height: 12.h,
+                    30.height,
+                    AppTextStyle(
+                      text: 'Welcome \nBack!',
+                      fontSize: 30.sp,
+                      fontWeight: FontWeight.w700,
+                      textAlign: TextAlign.start,
                     ),
-                    hintText: 'Email',
-                  ),
-                  Obx(() => Visibility(
-                        visible: controller.emailError.isNotEmpty,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: AppTextStyle(
-                            textAlign: TextAlign.start,
-                            text: controller.emailError.value,
-                            fontSize: 10.sp,
-                            fontWeight: FontWeight.w400,
-                            color: ColorName.crimsonRed,
-                          ),
-                        ),
-                      )),
-                  15.height,
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: AppTextStyle(
-                      text: 'Password',
+                    30.height,
+                    AppTextStyle(
+                      text: 'Email',
+                      textAlign: TextAlign.start,
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w600,
                     ),
-                  ),
-                  5.height,
-                  Obx(
-                    () => AppInputTextFormField(
-                      controller: controller.passEditingController,
-                      maxLines: 1,
-                      obscureText: controller.hidePassword.value,
-                      prefixIcon: SvgPicture.asset(
-                        Assets.icons.lockIcon,
-                        width: 18.w,
-                        height: 17.h,
-                      ),
-                      suffixIcon: controller.hidePassword.value
-                          ? InkWell(
-                              onTap: () {
-                                controller.hidePassword.value = false;
-                              },
-                              child: SvgPicture.asset(
-                                Assets.icons.inVisibleEyeIcon,
-                                width: 10.w,
-                                height: 10.h,
-                              ),
-                            )
-                          : InkWell(
-                              onTap: () {
-                                controller.hidePassword.value = true;
-                              },
-                              child: SvgPicture.asset(
-                                Assets.icons.visibleEyeIcon,
-                                width: 10.w,
-                                height: 10.h,
-                              ),
-                            ),
-                      hintText: 'Password',
-                    ),
-                  ),
-                  Obx(() => Visibility(
-                        visible: controller.passwordError.isNotEmpty,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: AppTextStyle(
-                            text: controller.passwordError.value,
-                            fontSize: 10.sp,
-                            fontWeight: FontWeight.w400,
-                            color: ColorName.crimsonRed,
-                          ),
-                        ),
-                      )),
-                  10.height,
-                  Row(
-                    children: [
-                      Obx(() {
-                        if (controller.boxCheck.value) {
-                          return boxUnChecked(onTap: () {
-                            controller.boxCheck.value = false;
-                          });
+                    5.height,
+                    AppInputTextFormField(
+                      controller: controller.emailEditingController,
+                      focusedBorderColor: ColorName.primaryColor,
+                      hintText: 'Email',
+                      errorTextColor: ColorName.textFieldErrorColor,
+                      errorBorderColor: ColorName.textFieldErrorColor,
+                      obscureText: false,
+                      keyboardType: TextInputType.emailAddress,
+                      autoValidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            value.trim().isEmpty) {
+                          return 'Please enter a Email';
                         } else {
-                          return boxChecked(onTap: () {
-                            controller.boxCheck.value = true;
-                          });
+                          final emailRegex = RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+                          if (!emailRegex.hasMatch(value)) {
+                            return 'Please enter a valid email address';
+                          }
                         }
-                      }),
-                      10.width,
-                      AppTextStyle(
-                        text: 'Remember Me',
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w500,
+                        return null;
+                      },
+                    ),
+                    15.height,
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: AppTextStyle(
+                        text: 'Password',
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
                       ),
-                      const Spacer(),
-                      InkWell(
-                        onTap: () {
-                          Get.toNamed(Routes.FORGOT_PASSWORD);
-                        },
-                        child: AppTextStyle(
-                          text: 'Forgot Password?',
-                          color: ColorName.primaryColor,
+                    ),
+                    5.height,
+                    Password(
+                      controller: controller,
+                      textFieldController: controller.passEditingController,
+                      hidePassword: controller.hidePassword,
+                      validator: (value) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            value.trim().isEmpty) {
+                          return 'Please enter a password';
+                        }
+                        return null;
+                      },
+                    ),
+                    10.height,
+                    Row(
+                      children: [
+                        Obx(() {
+                          if (controller.boxCheck.value) {
+                            return boxUnChecked(onTap: () {
+                              controller.boxCheck.value = false;
+                            });
+                          } else {
+                            return boxChecked(onTap: () {
+                              controller.boxCheck.value = true;
+                            });
+                          }
+                        }),
+                        10.width,
+                        AppTextStyle(
+                          text: 'Remember Me',
                           fontSize: 13.sp,
                           fontWeight: FontWeight.w500,
                         ),
-                      ),
-                    ],
-                  ),
-                  // 25.height,
-                  // // orPart(),
-                  // 25.height,
-                  // signInOption(
-                  //   onTap: () {
-                  //     Get.find<LoginController>().signInWithGoogle();
-                  //   },
-                  //   icon: Assets.icons.googleIcon,
-                  //   text: 'Continue with Google',
-                  // ),
-                  30.height,
-                  loadingButton(
-                    controller: controller.btnController,
-                    onTap: () {
-                      if (controller.validateInputs()) {
-                        controller.signIn(
-                          email: controller.emailEditingController.text,
-                          password: controller.passEditingController.text,
-                        );
-                      } else {
-                        controller.btnController.stop();
-                      }
-                    },
-                    text: "Login",
-                  ),
-                  20.height,
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const AppTextStyle(text: "Don't have an account?"),
-                      CupertinoButton(
-                        onPressed: () {
-                          Get.toNamed(Routes.REGISTER);
-                        },
-                        child: AppTextStyle(
-                          text: "Sign Up",
-                          color: ColorName.primaryColor,
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                  15.height,
-                  orPart(),
-                  15.height,
-                  loadingButton(
-                    onTap: () {
-                     final registerController = Get.put(RegisterController());
-                     registerController.signUpOrInWithGoogle();
-                    },
-                    controller: controller.btnController,
-                    valueColor: ColorName.primaryColor,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
-                    text: 'Continue with Google',
-                    child: Row(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Center(
-                              child: AppTextStyle(
-                                text: 'Continue with Google',
-                                color:  Colors.black,
-                                fontSize:  18.sp,
-                                fontWeight:  FontWeight.w600,
-                              ),
-                            ),
-                          ],
+                        const Spacer(),
+                        InkWell(
+                          onTap: () {
+                            Get.toNamed(Routes.FORGOT_PASSWORD);
+                          },
+                          child: AppTextStyle(
+                            text: 'Forgot Password?',
+                            color: ColorName.primaryColor,
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ],
-                    )
-                  ),
-                  50.height,
-                ],
+                    ),
+                    // 25.height,
+                    // // orPart(),
+                    // 25.height,
+                    // signInOption(
+                    //   onTap: () {
+                    //     Get.find<LoginController>().signInWithGoogle();
+                    //   },
+                    //   icon: Assets.icons.googleIcon,
+                    //   text: 'Continue with Google',
+                    // ),
+                    30.height,
+                    loadingButton(
+                      controller: controller.btnController,
+                      valueColor: Colors.white,
+                      onTap: () {
+                        if (formKey.currentState!.validate()) {
+                          controller.logIn(
+                            email: controller.emailEditingController.text,
+                            password: controller.passEditingController.text,
+                          );
+                        } else {
+                          controller.btnController.stop();
+                          Log.i("Ontapped");
+                        }
+                      },
+                      text: "Login",
+                    ),
+                    20.height,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const AppTextStyle(text: "Don't have an account?"),
+                        CupertinoButton(
+                          onPressed: () {
+                            Get.toNamed(Routes.REGISTER);
+                          },
+                          child: AppTextStyle(
+                            text: "Sign Up",
+                            color: ColorName.primaryColor,
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                    15.height,
+                    orPart(),
+                    15.height,
+                    loadingButton(
+                      onTap: () {
+                       // final registerController = Get.put(RegisterController());
+                       // registerController.signUpOrInWithGoogle();
+                      },
+                      controller: controller.btnController,
+                      valueColor: ColorName.white,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                      text: 'Continue with Google',
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: AppTextStyle(
+                              text: 'Continue with Google',
+                              textAlign: TextAlign.center,
+                              color:  Colors.white,
+                              fontSize:  18.sp,
+                              fontWeight:  FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      )
+                    ),
+                    50.height,
+                  ],
+                ),
               ),
             ),
           ),

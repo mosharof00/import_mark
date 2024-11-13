@@ -14,7 +14,7 @@ class RegisterController extends GetxController {
   //TODO: Implement RegisterController
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
   // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance; //
   Rx<User?> firebaseUser = Rx<User?>(null);
   RoundedLoadingButtonController btnController =
@@ -49,7 +49,7 @@ class RegisterController extends GetxController {
       if (user != null) {
         // Get the push notification token
         // String? token = await _firebaseMessaging.getToken();
-        await _firestore.collection('users').doc(user.uid).set({
+        await _fireStore.collection('users').doc(user.uid).set({
           'id': user.uid,
           'email': email,
           'name': name, // Store user's name
@@ -59,7 +59,7 @@ class RegisterController extends GetxController {
           'password': password,
         });
         DocumentSnapshot userDoc =
-            await _firestore.collection('users').doc(user.uid).get();
+            await _fireStore.collection('users').doc(user.uid).get();
         HelperUtils.setUser(
             userId: user.uid,
             role: userDoc['role'],
@@ -115,9 +115,9 @@ class RegisterController extends GetxController {
 
         // Check if the user already exists in Firestore
         DocumentSnapshot userDoc =
-            await _firestore.collection('users').doc(user.value!.uid).get();
+            await _fireStore.collection('users').doc(user.value!.uid).get();
         if (!userDoc.exists) {
-          await _firestore.collection('users').doc(user.value!.uid).set({
+          await _fireStore.collection('users').doc(user.value!.uid).set({
             'id': user.value!.uid,
             'email': email,
             'name': name,

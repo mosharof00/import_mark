@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:import_mark/app/routes/app_pages.dart';
 import 'package:import_mark/global/global_snackbar.dart';
 import 'package:import_mark/global/log_printer.dart';
@@ -28,7 +26,7 @@ class LoginController extends GetxController {
   var passwordError = ''.obs;
 
   // Sign in method with name fetching
-  Future<void> signIn({required String email, required String password}) async {
+  Future<void> logIn({required String email, required String password}) async {
     try {
       btnController.start();
 
@@ -55,6 +53,7 @@ class LoginController extends GetxController {
               userId: user.uid, role: role, token: deviceToken);
           Get.offAllNamed(Routes.MAIN_PAGE);
         }
+        btnController.stop();
         globalSnackBar(
             title: "Success!",
             message: 'Login successfully.',
@@ -65,7 +64,6 @@ class LoginController extends GetxController {
           title: "Unsuccessful!",
           message: 'Something went wrong. please try grain later.',
           durationInSeconds: 2);
-
     } on FirebaseAuthException catch (e) {
       btnController.stop();
       // Handle different FirebaseAuth errors
@@ -89,7 +87,10 @@ class LoginController extends GetxController {
       }
       globalSnackBar(title: 'Error!', message: errorMessage);
     } catch (e) {
+      btnController.stop();
       Log.e(e);
+    } finally {
+      btnController.stop();
     }
   }
 
@@ -152,26 +153,6 @@ class LoginController extends GetxController {
   //     btnController.stop();
   //   }
   // }
-
-  bool validateInputs() {
-    bool isValid = true;
-    if (emailEditingController.text.isEmpty) {
-      emailError.value = '* Required';
-      isValid = false;
-    } else if (!GetUtils.isEmail(emailEditingController.text)) {
-      emailError.value = 'Enter a valid email';
-      isValid = false;
-    } else {
-      emailError.value = '';
-    }
-    if (passEditingController.text.isEmpty) {
-      passwordError.value = '* Required';
-      isValid = false;
-    } else {
-      passwordError.value = '';
-    }
-    return isValid;
-  }
 
   @override
   void dispose() {

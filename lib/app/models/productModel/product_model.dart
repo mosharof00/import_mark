@@ -1,74 +1,125 @@
-class ProductData {
-  int? id;
-  String? productName;
-  String? slug;
-  String? productSku;
-  int? categoryId;
-  int? subCategoryId;
-  int? childCategoryId;
-  int? brandId;
+class ProductModel {
+  int id;
+  String productName;
   String? productDescription;
-  String? gander;
-  dynamic youtubeEmbadecode;
-  dynamic shippingType;
-  dynamic shippigCost;
-  dynamic shippingRtnPolicy;
-  dynamic offerStart;
-  dynamic offerEnd;
+  List<ProductColor> colorList;
+  List<String> imageList;
+  String? productSku;
+  int categoryId;
+  String? shippingType;
+  int? shippingCost;
+  int buyingPrice;
+  int salePrice;
   int? discountPercent;
-  dynamic multipleQty;
-  dynamic metaName;
-  dynamic metaTitle;
-  dynamic metaImage;
-  dynamic metaKeywords;
-  dynamic metaDescription;
   int? totalStock;
   int? available;
-  dynamic supplierId;
   int? sold;
-  String? status;
-  String? type;
+  bool isActive;
   DateTime? createdAt;
   DateTime? updatedAt;
-  double? reviewsAvgRating;
-  // List<ProductVariationData>? productvariations;
-  // List<SizeData>? sizes;
-  List<dynamic>? weights;
 
-  ProductData({
-    this.id,
-    this.productName,
-    this.slug,
-    this.productSku,
-    this.categoryId,
-    this.subCategoryId,
-    this.childCategoryId,
-    this.brandId,
+  ProductModel({
+    required this.id,
+    required this.productName,
     this.productDescription,
-    this.gander,
-    this.youtubeEmbadecode,
+    required this.colorList,
+    required this.imageList,
+    this.productSku,
+    required this.categoryId,
     this.shippingType,
-    this.shippigCost,
-    this.shippingRtnPolicy,
-    this.offerStart,
-    this.offerEnd,
+    this.shippingCost,
+    required this.buyingPrice,
+    required this.salePrice,
     this.discountPercent,
-    this.multipleQty,
-    this.metaName,
-    this.metaTitle,
-    this.metaImage,
-    this.metaKeywords,
-    this.metaDescription,
     this.totalStock,
     this.available,
-    this.supplierId,
     this.sold,
-    this.status,
-    this.type,
+    required this.isActive,
     this.createdAt,
     this.updatedAt,
-    this.reviewsAvgRating,
-    // this.productvariations,
-    // this.sizes,
-    this.weights,
-  });}
+  });
+
+  // Convert ProductData to Map for Firebase
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'productName': productName,
+      'productDescription': productDescription,
+      'colorList': colorList.map((color) => color.toMap()).toList(),
+      'imageList': imageList,
+      'productSku': productSku,
+      'categoryId': categoryId,
+      'shippingType': shippingType,
+      'shippingCost': shippingCost,
+      'buyingPrice': buyingPrice,
+      'salePrice': salePrice,
+      'discountPercent': discountPercent,
+      'totalStock': totalStock,
+      'available': available,
+      'sold': sold,
+      'isActive': isActive,
+      'createdAt': createdAt?.millisecondsSinceEpoch,
+      'updatedAt': updatedAt?.millisecondsSinceEpoch,
+    };
+  }
+
+  // Convert Map to ProductData
+  factory ProductModel.fromMap(Map<String, dynamic> map) {
+    return ProductModel(
+      id: map['id'],
+      productName: map['productName'],
+      productDescription: map['productDescription'],
+      colorList: (map['colorList'] as List)
+          .map((color) => ProductColor.fromMap(color))
+          .toList(),
+      imageList: List<String>.from(map['imageList']),
+      productSku: map['productSku'],
+      categoryId: map['categoryId'],
+      shippingType: map['shippingType'],
+      shippingCost: map['shippingCost'],
+      buyingPrice: map['buyingPrice'],
+      salePrice: map['salePrice'],
+      discountPercent: map['discountPercent'],
+      totalStock: map['totalStock'],
+      available: map['available'],
+      sold: map['sold'],
+      isActive: map['isActive'],
+      createdAt: map['createdAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'])
+          : null,
+      updatedAt: map['updatedAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['updatedAt'])
+          : null,
+    );
+  }
+}
+
+class ProductColor {
+  int id;
+  String colorCode;
+  String name;
+
+  ProductColor({
+    required this.id,
+    required this.colorCode,
+    required this.name,
+  });
+
+  // Convert ProductColor to Map for Firebase
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'colorCode': colorCode,
+      'name': name,
+    };
+  }
+
+  // Convert Map to ProductColor
+  factory ProductColor.fromMap(Map<String, dynamic> map) {
+    return ProductColor(
+      id: map['id'],
+      colorCode: map['colorCode'],
+      name: map['name'],
+    );
+  }
+}
