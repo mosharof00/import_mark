@@ -3,7 +3,7 @@ class ProductModel {
   String productName;
   String? productDescription;
   List<ProductColor> colorList;
-  List<String> imageList;
+  List<String> images;
   String? productSku;
   int categoryId;
   String? shippingType;
@@ -23,7 +23,7 @@ class ProductModel {
     required this.productName,
     this.productDescription,
     required this.colorList,
-    required this.imageList,
+    required this.images,
     this.productSku,
     required this.categoryId,
     this.shippingType,
@@ -46,7 +46,7 @@ class ProductModel {
       'productName': productName,
       'productDescription': productDescription,
       'colorList': colorList.map((color) => color.toMap()).toList(),
-      'imageList': imageList,
+      'images': images,
       'productSku': productSku,
       'categoryId': categoryId,
       'shippingType': shippingType,
@@ -72,7 +72,7 @@ class ProductModel {
       colorList: (map['colorList'] as List)
           .map((color) => ProductColor.fromMap(color))
           .toList(),
-      imageList: List<String>.from(map['imageList']),
+      images: List<String>.from(map['images']),
       productSku: map['productSku'],
       categoryId: map['categoryId'],
       shippingType: map['shippingType'],

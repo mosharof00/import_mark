@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:import_mark/app/modules/register/controllers/register_controller.dart';
 import 'package:import_mark/global/log_printer.dart';
 import 'package:import_mark/global/sizedbox_extension.dart';
 import '../../../../gen/assets.gen.dart';
@@ -194,35 +193,35 @@ class LoginView extends GetView<LoginController> {
                         ),
                       ],
                     ),
-                    15.height,
-                    orPart(),
-                    15.height,
-                    loadingButton(
-                      onTap: () {
-                       // final registerController = Get.put(RegisterController());
-                       // registerController.signUpOrInWithGoogle();
-                      },
-                      controller: controller.btnController,
-                      valueColor: ColorName.white,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                      text: 'Continue with Google',
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
-                            child: AppTextStyle(
-                              text: 'Continue with Google',
-                              textAlign: TextAlign.center,
-                              color:  Colors.white,
-                              fontSize:  18.sp,
-                              fontWeight:  FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      )
-                    ),
+                    // 15.height,
+                    // orPart(),
+                    // 15.height,
+                    // loadingButton(
+                    //   onTap: () {
+                    //    // final registerController = Get.put(RegisterController());
+                    //    // registerController.signUpOrInWithGoogle();
+                    //   },
+                    //   controller: controller.btnController,
+                    //   valueColor: ColorName.white,
+                    //   fontSize: 16.sp,
+                    //   fontWeight: FontWeight.w600,
+                    //   text: 'Continue with Google',
+                    //   child: Row(
+                    //     crossAxisAlignment: CrossAxisAlignment.center,
+                    //     mainAxisAlignment: MainAxisAlignment.center,
+                    //     children: [
+                    //       Center(
+                    //         child: AppTextStyle(
+                    //           text: 'Continue with Google',
+                    //           textAlign: TextAlign.center,
+                    //           color:  Colors.white,
+                    //           fontSize:  18.sp,
+                    //           fontWeight:  FontWeight.w600,
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   )
+                    // ),
                     50.height,
                   ],
                 ),

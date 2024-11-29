@@ -58,12 +58,13 @@ class LoginController extends GetxController {
             title: "Success!",
             message: 'Login successfully.',
             durationInSeconds: 2);
+      }else{
+        btnController.stop();
+        globalSnackBar(
+            title: "Unsuccessful!",
+            message: 'Something went wrong. please try grain later.',
+            durationInSeconds: 2);
       }
-      btnController.stop();
-      globalSnackBar(
-          title: "Unsuccessful!",
-          message: 'Something went wrong. please try grain later.',
-          durationInSeconds: 2);
     } on FirebaseAuthException catch (e) {
       btnController.stop();
       // Handle different FirebaseAuth errors
