@@ -1,15 +1,21 @@
-//buildscript {
-//    ext.kotlin_version = '1.7.10'
-//    repositories {
-//        google()
-//        mavenCentral()
-//    }
-//
-//    dependencies {
-//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-//    }
-//}
+// build.gradle (Project-Level)
 
+// Uncomment if you need Kotlin Gradle plugin
+buildscript {
+    ext.kotlin_version = '1.7.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+//plugins {
+//    // Firebase Google services plugin
+//    id 'com.google.gms.google-services' version '4.4.2' apply false
+//}
 
 allprojects {
     repositories {
@@ -21,8 +27,6 @@ allprojects {
 rootProject.buildDir = "../build"
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
     project.evaluationDependsOn(":app")
 }
 

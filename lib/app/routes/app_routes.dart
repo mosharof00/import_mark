@@ -38,6 +38,11 @@ abstract class Routes {
   static const PAYMENT_METHODS = _Paths.PAYMENT_METHODS;
   static const STOCK_DETAILS =
       _Paths.ADMIN + _Paths.STOCKS + _Paths.STOCK_DETAILS;
+  static const DELIVERY_ADDRESS = _Paths.DELIVERY_ADDRESS;
+  static const ADD_DELIVARY_ADDRESS =
+      _Paths.DELIVERY_ADDRESS + _Paths.ADD_DELIVARY_ADDRESS;
+  static const ADD_CATEGORY = _Paths.ADMIN + _Paths.ADD_CATEGORY;
+  static const CATEGORY = _Paths.CATEGORY;
 }
 
 abstract class _Paths {
@@ -73,4 +78,8 @@ abstract class _Paths {
   static const ORDER_INFO = '/order-info';
   static const PAYMENT_METHODS = '/payment-methods';
   static const STOCK_DETAILS = '/stock-details';
+  static const DELIVERY_ADDRESS = '/delivery-address';
+  static const ADD_DELIVARY_ADDRESS = '/add-delivary-address';
+  static const ADD_CATEGORY = '/add-category';
+  static const CATEGORY = '/category';
 }

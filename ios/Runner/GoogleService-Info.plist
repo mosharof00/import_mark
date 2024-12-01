@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>191554436392-nhec79tflopnedn3j00rc31l3j2ghg3t.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.191554436392-nhec79tflopnedn3j00rc31l3j2ghg3t</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>191554436392-egk27oqqm9q96k0jjbm44k8ru6ejo21p.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDBxWnY-hRZCEQtftBgKAQyLMvrHTthCB4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>191554436392</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mosharof.importMark</string>
+	<key>PROJECT_ID</key>
+	<string>import-mark</string>
+	<key>STORAGE_BUCKET</key>
+	<string>import-mark.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:191554436392:ios:e4e943469afa221454641d</string>
+	<key>DATABASE_URL</key>
+	<string>https://import-mark-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

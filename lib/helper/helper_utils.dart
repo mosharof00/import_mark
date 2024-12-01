@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:import_mark/global/log_printer.dart';
 import 'package:import_mark/helper/hive_service.dart';
 import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
 import 'dart:core';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:shopaholic_seller/app/modules/dashboard/controllers/dashboard_controller.dart';
@@ -121,6 +122,14 @@ class HelperUtils {
   //     }
   //   }
   // }
+
+  ///   for generate a Uuid
+  static const Uuid _uuid = Uuid();
+
+  // Generate a time-based (UUID v1) ID
+  static String getUuId() {
+    return _uuid.v1();
+  }
 
   /// Format Time group By
   static String groupByDate(DateTime? date) {

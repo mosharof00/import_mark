@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/admin/addCategory/bindings/add_category_binding.dart';
+import '../modules/admin/addCategory/views/add_category_view.dart';
 import '../modules/admin/add_product/bindings/add_product_binding.dart';
 import '../modules/admin/add_product/views/add_product_view.dart';
 import '../modules/admin/admin_main_page/bindings/admin_main_page_binding.dart';
@@ -30,8 +32,14 @@ import '../modules/admin/stocks/views/stocks_view.dart';
 import '../modules/admin/views/admin_view.dart';
 import '../modules/cart/bindings/cart_binding.dart';
 import '../modules/cart/views/cart_view.dart';
+import '../modules/category/bindings/category_binding.dart';
+import '../modules/category/views/category_view.dart';
 import '../modules/checkout/bindings/checkout_binding.dart';
 import '../modules/checkout/views/checkout_view.dart';
+import '../modules/delivery_address/add_delivery_address/bindings/add_delivary_address_binding.dart';
+import '../modules/delivery_address/add_delivery_address/views/add_delivary_address_view.dart';
+import '../modules/delivery_address/bindings/delivery_address_binding.dart';
+import '../modules/delivery_address/views/delivery_address_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -152,6 +160,11 @@ class AppPages {
             ),
           ],
         ),
+        GetPage(
+          name: _Paths.ADD_CATEGORY,
+          page: () => const AddCategoryView(),
+          binding: AddCategoryBinding(),
+        ),
       ],
     ),
     GetPage(
@@ -239,6 +252,23 @@ class AppPages {
       name: _Paths.PAYMENT_METHODS,
       page: () => const PaymentMethodsView(),
       binding: PaymentMethodsBinding(),
+    ),
+    GetPage(
+      name: _Paths.DELIVERY_ADDRESS,
+      page: () => const DeliveryAddressView(),
+      binding: DeliveryAddressBinding(),
+      children: [
+        GetPage(
+          name: _Paths.ADD_DELIVARY_ADDRESS,
+          page: () => const AddDeliveryAddressView(),
+          binding: AddDeliveryAddressBinding(),
+        ),
+      ],
+    ),
+    GetPage(
+      name: _Paths.CATEGORY,
+      page: () => const CategoryView(),
+      binding: CategoryBinding(),
     ),
   ];
 }
