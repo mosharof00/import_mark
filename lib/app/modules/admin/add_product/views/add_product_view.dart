@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:import_mark/app/modules/admin/addCategory/views/add_category_view.dart';
+import 'package:import_mark/app/repository/api_services.dart';
 import 'package:import_mark/global/app_text_style.dart';
+import 'package:import_mark/global/global_button.dart';
 import 'package:import_mark/global/global_snackbar.dart';
 import 'package:import_mark/global/log_printer.dart';
 import 'package:import_mark/global/methods/pick_files.dart';
@@ -18,6 +20,7 @@ class AddProductView extends GetView<AddProductController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('AddProductView'),
         centerTitle: true,
@@ -52,10 +55,12 @@ class AddProductView extends GetView<AddProductController> {
             SizedBox(height: 16),
             ElevatedButton.icon(
               onPressed: () async {
-                final img = await PickFile.pickSingleFile(
-                    imageSource: ImageSource.gallery);
-                if (img != null) {
-                  controller.selectedImage.value = img;
+                final List<XFile>? files = await PickFile.pickMultiFile();
+
+                if (files != null) {
+                  controller.selectedFiles.value = files;
+                } else {
+                  Log.e("No images selected");
                 }
               },
               icon: Icon(Icons.image),
@@ -94,18 +99,19 @@ class AddProductView extends GetView<AddProductController> {
             SizedBox(height: 16),
             ElevatedButton(
                 onPressed: () async {
-                  if (controller.folderController.text.isNotEmpty &&
-                      controller.selectedImage.value != null) {
-                    Log.i('called from view');
-                    controller.uploadedImageUrl.value =
-                        (await controller.uploadFile(
-                            file: controller.selectedImage.value!,
-                            folderName: "products"))!;
-                  } else {
-                    globalSnackBar(
-                        title: "Alert!",
-                        message: "Please enter all Required feeds.");
-                  }
+                  // if (controller.folderController.text.isNotEmpty &&
+                  //     controller.selectedImage.value != null) {
+                  //   Log.i('called from view');
+                  //   controller.uploadedImageUrl.value =
+                  //       (await controller.uploadFile(
+                  //           file: controller.selectedImage.value!,
+                  //           folderName: "categories"))!;
+                  // } else {
+                  //   globalSnackBar(
+                  //       title: "Alert!",
+                  //       message: "Please enter all Required feeds.");
+                  // }
+                  controller.uploadImages();
                 },
                 child: AppTextStyle(text: "Uoload image on Cloudinary")),
             Obx(() {
@@ -114,7 +120,25 @@ class AddProductView extends GetView<AddProductController> {
               } else {
                 return 0.height;
               }
-            })
+            }),
+            globalButton(
+                onTap: () async {
+                  try {
+                    bool success = await controller.deleteFileFromCloudinary(
+                        'https://res.cloudinary.com/dvmsjvhmu/image/upload/v1733070408/products/p1wftzq9q8nozeztokpc.jpg');
+                    if (success) {
+                      print("File deleted successfully.");
+                    } else {
+                      print("Failed to delete file.");
+                    }
+                  } catch (e) {
+                    print("Error: $e");
+                  }
+                  //   final apiService = ApiServices();
+                  //   apiService.deleteFileFromCloudinary(
+                  //       'https://res.cloudinary.com/dvmsjvhmu/image/upload/v1733070408/products/p1wftzq9q8nozeztokpc.jpg');
+                },
+                text: "Delete")
           ],
         ),
       ),
