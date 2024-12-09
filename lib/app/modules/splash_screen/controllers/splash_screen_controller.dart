@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../../global/log_printer.dart';
-import '../../../../helper/config.dart';
+import '../../../../helper/app_configuration.dart';
 import '../../../../helper/helper_utils.dart';
 import '../../../../helper/hive_service.dart';
 import '../../../routes/app_pages.dart';
@@ -27,13 +27,13 @@ class SplashScreenController extends GetxController {
     } else {
       if (HelperUtils.userRole == HelperUtils.user) {
         ///  for Student
-        AppConfig.appFlavor = AppFlavor.user;
+        AppConfiguration.appFlavor = AppFlavor.user;
         // HelperUtils.initializeStudentMainControllers();
         await Future.delayed(const Duration(seconds: 2));
         Get.offNamed(Routes.MAIN_PAGE);
       } else if (HelperUtils.userRole == HelperUtils.admin) {
         ///  for Instructor
-        AppConfig.appFlavor = AppFlavor.admin;
+        AppConfiguration.appFlavor = AppFlavor.admin;
         // HelperUtils.initializeMentorMainControllers();
         await Future.delayed(const Duration(seconds: 2));
         Get.offNamed(Routes.ADMIN_MAIN_PAGE);
