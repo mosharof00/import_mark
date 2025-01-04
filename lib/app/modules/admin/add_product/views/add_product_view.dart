@@ -74,7 +74,7 @@ class AddProductView extends GetView<AddProductController> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Uploaded Image URL:",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
