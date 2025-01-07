@@ -55,10 +55,13 @@ class AddProductView extends GetView<AddProductController> {
             SizedBox(height: 16),
             ElevatedButton.icon(
               onPressed: () async {
-                final List<XFile>? files = await PickFile.pickMultiFile();
+                // final List<XFile>? files = await PickFile.pickMultiFile();
+                final XFile? files = await PickFile.pickSingleFile(
+                    imageSource: ImageSource.gallery);
 
                 if (files != null) {
-                  controller.selectedFiles.value = files;
+                  // controller.selectedFiles.value = files;
+                  controller.selectedImage.value = files;
                 } else {
                   Log.e("No images selected");
                 }
@@ -111,7 +114,17 @@ class AddProductView extends GetView<AddProductController> {
                   //       title: "Alert!",
                   //       message: "Please enter all Required feeds.");
                   // }
-                  controller.uploadImages();
+                  // controller.uploadImages();
+                  // controller.uploadFile(
+                  //     file: controller.selectedImage.value!,
+                  //     folderName: 'product');
+
+                  controller.uploadSingelFile(
+                      file: controller.selectedImage.value!,
+                      folderName: 'product',
+                    presetName: 'product'
+
+                  );
                 },
                 child: AppTextStyle(text: "Uoload image on Cloudinary")),
             Obx(() {
@@ -121,11 +134,15 @@ class AddProductView extends GetView<AddProductController> {
                 return 0.height;
               }
             }),
+
+            20.height,
             globalButton(
                 onTap: () async {
+                  Log.w(controller.uploadedImageUrl.value);
+                  if (controller.uploadedImageUrl.value.isEmpty) return;
                   try {
-                    bool success = await controller.deleteFileFromCloudinary(
-                        'https://res.cloudinary.com/dvmsjvhmu/image/upload/v1733070408/products/p1wftzq9q8nozeztokpc.jpg');
+                    bool success = await controller.deleteImage(
+                       imageUrl: controller.uploadedImageUrl.value);
                     if (success) {
                       print("File deleted successfully.");
                     } else {
