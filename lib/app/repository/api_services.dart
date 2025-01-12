@@ -96,6 +96,71 @@ class ApiServices implements ApiService {
     );
   }
 
+  /// Upload a list of files to Cloudinary concurrently and get a list of URLs
+  Future<List<String>> uploadMultiFile({
+    required List<XFile> files,
+    required String folderName,
+    required String presetName,
+  }) async {
+    List<Future<String?>> uploadFutures = [];
+    List<String> uploadedUrls = [];
+
+    try {
+      Log.i('Starting concurrent file uploads');
+
+      for (var file in files) {
+        final String fileName = file.path.split('/').last;
+
+        final dio.FormData formData = dio.FormData.fromMap({
+          "file":
+              await dio.MultipartFile.fromFile(file.path, filename: fileName),
+          "upload_preset": presetName,
+          "folder": folderName,
+        });
+
+        // Each upload is handled independently
+        uploadFutures.add(
+          _dio
+              .post(
+            cloudinaryUrl,
+            data: formData,
+            options: dio.Options(
+              headers: {
+                "Authorization":
+                    "Basic ${base64Encode(utf8.encode("$apiKey:$apiSecret"))}",
+              },
+            ),
+          )
+              .then<String?>((response) {
+            if (response.statusCode == 200) {
+              Log.i('File uploaded: ${response.data["secure_url"]}');
+              return response.data["secure_url"] as String?;
+            } else {
+              Log.e('Failed to upload file: ${response.data}');
+              return null; // Return null for failed uploads
+            }
+          }).catchError((e) {
+            Log.e('Error uploading file: $e');
+            return null; // Return null if an error occurs
+          }),
+        );
+      }
+
+      // Wait for all uploads to complete
+      final List<String?> results = await Future.wait(uploadFutures);
+
+      // Filter out null values (failed uploads)
+      uploadedUrls = results.whereType<String>().toList();
+
+      Log.i("Batch upload complete: $uploadedUrls");
+
+      return uploadedUrls;
+    } catch (e) {
+      Log.e('Error during batch upload: $e');
+      return [];
+    }
+  }
+
   /// Delete a file from Cloudinary using public_id
 
   @override

@@ -119,7 +119,7 @@ class AddProductView extends GetView<AddProductController> {
                   //     file: controller.selectedImage.value!,
                   //     folderName: 'product');
 
-                  controller.uploadSingelFile(
+                  controller.uploadSingleFile(
                       file: controller.selectedImage.value!,
                       folderName: 'product',
                     presetName: 'product'
