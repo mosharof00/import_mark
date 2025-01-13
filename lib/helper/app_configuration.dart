@@ -1,6 +1,6 @@
 enum AppFlavor { user, admin }
 
-class AppConfig {
+class AppConfiguration {
   static AppFlavor appFlavor = AppFlavor.user;
 }
 
@@ -16,19 +16,19 @@ AppFlavor getAppFlavor(String appType) {
 }
 
 String getAppFlavorName() {
-  if (AppConfig.appFlavor == AppFlavor.user) {
+  if (AppConfiguration.appFlavor == AppFlavor.user) {
     return 'user';
   }
-  if (AppConfig.appFlavor == AppFlavor.admin) {
+  if (AppConfiguration.appFlavor == AppFlavor.admin) {
     return 'admin';
   }
   return '';
 }
 
 bool isStudent() {
-  return AppConfig.appFlavor == AppFlavor.user;
+  return AppConfiguration.appFlavor == AppFlavor.user;
 }
 
 bool isTeacher() {
-  return AppConfig.appFlavor == AppFlavor.admin;
+  return AppConfiguration.appFlavor == AppFlavor.admin;
 }
