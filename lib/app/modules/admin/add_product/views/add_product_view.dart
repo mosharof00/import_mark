@@ -129,7 +129,7 @@ class AddProductView extends GetView<AddProductController> {
                 child: AppTextStyle(text: "Uoload image on Cloudinary")),
             Obx(() {
               if (controller.isUploading.value) {
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               } else {
                 return 0.height;
               }
